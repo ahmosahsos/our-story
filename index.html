@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#f7f0e8">
-  <title>Bizim Hikâyemiz ♥</title>
+  <title>Bizim Hikâyemiz 🩵</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -388,6 +388,36 @@
 
     document.getElementById("memoryCaption").textContent =
       chooseRandom(captions);
+      
+      
+    // Birlikte olmaya başladığımız tarih
+    // Saat bilinmediği için başlangıç gece yarısı kabul ediliyor.
+    const startDate = new Date(2025, 11, 12, 0, 0, 0);
+
+    function updateCounter() {
+      const now = new Date();
+      const elapsed = now.getTime() - startDate.getTime();
+
+      if (elapsed < 0) return;
+
+      const totalMinutes = Math.floor(elapsed / 60000);
+      const days = Math.floor(totalMinutes / (60 * 24));
+      const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+      const minutes = totalMinutes % 60;
+
+      document.getElementById("days").textContent =
+        days.toLocaleString("tr-TR") + " gün";
+
+      document.getElementById("timeDetail").textContent =
+        hours + " saat · " + minutes + " dakika";
+
+      document.getElementById("dateNote").textContent =
+        "12 Aralık 2025'ten beri birlikte. ♥";
+    }
+
+    updateCounter();
+    setInterval(updateCounter, 60000);
+
 
     const overlay = document.getElementById("menuOverlay");
     const openButton = document.getElementById("openMenu");
