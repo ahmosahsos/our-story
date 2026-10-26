@@ -255,14 +255,1716 @@
       .memory-art { min-height: 240px; }
       .days { font-size: 36px; }
     }
-  </style>
+
+    .auth-screen{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:var(--cream);overflow:auto}
+    .auth-card{width:min(100%,440px);padding:26px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:0 12px 35px #49383212}
+    .auth-card h1{font-size:30px;margin:0 0 8px}.auth-card p{color:var(--muted);line-height:1.7;font-size:14px}
+    .auth-card label{display:block;margin:14px 0 6px;font-size:13px;font-weight:700}
+    .auth-card input,.auth-card select{width:100%;padding:12px;border:1px solid var(--line);border-radius:9px;background:white;color:var(--brown);font:inherit}
+    .auth-card button{width:100%;margin-top:16px;padding:12px;border:0;border-radius:999px;background:var(--rose);color:white;cursor:pointer;font:inherit;font-weight:700}
+    .auth-status{margin-top:12px;font-size:13px;line-height:1.6;color:var(--muted)}.auth-status.error{color:#a33b45}
+    body.locked{overflow:hidden}body.locked>header,body.locked>main,body.locked>#menuOverlay{visibility:hidden}
+
+  
+    .decrypted-media { width:100%; height:100%; max-height:520px; object-fit:contain; display:block; border-radius:12px; }
+    .memory-art.has-media { padding:12px; background:#f2e8df; }
+    .media-note { margin-top:10px; font-size:13px; color:#806d63; }
+    .encrypted-gallery { margin: 28px auto 0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; text-align:left; }
+    .gallery-item { margin:0; padding:8px; background:var(--paper); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+    .gallery-item img,.gallery-item video { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:8px; background:#f2e8df; }
+    .gallery-item figcaption { padding:8px 2px 2px; font-size:12px; color:var(--muted); }
+    .gallery-heading { margin:28px 0 10px; font-family:"Lora",serif; font-size:25px; font-weight:400; }
+    @media(min-width:560px){ .encrypted-gallery { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+
+    /* Soy ağacımız */
+    .family-section {
+      margin: 36px auto 0;
+      padding: 30px 18px 32px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fffdfb 0%, #f8f1ea 100%);
+      box-shadow: 0 14px 36px #4938320d;
+      scroll-margin-top: 90px;
+    }
+    .family-section[hidden] { display: none !important; }
+
+    .family-kicker {
+      color: var(--rose);
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .family-title {
+      margin: 0 0 8px;
+      font-family: "Lora", serif;
+      font-size: clamp(30px, 6vw, 46px);
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .family-subtitle {
+      margin: 0 auto 28px;
+      max-width: 620px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .tree-shell {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .tree-row {
+      display: grid;
+      justify-content: center;
+      align-items: start;
+      gap: 16px;
+    }
+
+    .tree-row.grandparents {
+      grid-template-columns: repeat(2, minmax(260px, 320px));
+    }
+
+    .tree-row.parents {
+      grid-template-columns: repeat(2, minmax(180px, 220px));
+      margin-top: 0;
+    }
+
+    .tree-row.children {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 0;
+      position: relative;
+    }
+
+    .tree-node {
+      position: relative;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      text-align: center;
+      color: var(--brown);
+      box-shadow: 0 6px 18px #49383208;
+    }
+
+    .tree-node.couple {
+      padding: 18px 14px;
+    }
+
+    .tree-node.person {
+      padding: 14px 12px;
+      border-radius: 999px;
+      background: #fff;
+    }
+
+    .tree-node.union {
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 20px 20px 18px;
+      border-color: #d7a2a3;
+      background: #fff8f7;
+    }
+
+    .tree-main-text {
+      font-family: "Lora", serif;
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    .tree-sub-text {
+      margin-top: 7px;
+      font-size: 13px;
+      color: var(--rose);
+      font-weight: 700;
+    }
+
+    .tree-helper-text {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .tree-line-center {
+      width: 2px;
+      height: 26px;
+      margin: 0 auto;
+      background: #d8b8b0;
+      border-radius: 999px;
+    }
+
+    .tree-dual-lines {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(180px, 220px));
+      justify-content: center;
+      gap: 16px;
+      width: fit-content;
+      margin: 0 auto 2px;
+    }
+
+    .tree-dual-lines .tree-line-center {
+      height: 24px;
+    }
+
+    .tree-join-block {
+      width: min(440px, 92%);
+      margin: 0 auto;
+      position: relative;
+      padding-top: 22px;
+    }
+
+    .tree-join-block::before {
+      content: "";
+      position: absolute;
+      left: 25%;
+      right: 25%;
+      top: 0;
+      height: 2px;
+      background: #d8b8b0;
+      border-radius: 999px;
+    }
+
+    .tree-join-block::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 22px;
+      transform: translateX(-50%);
+      background: #d8b8b0;
+      border-radius: 999px;
+    }
+
+    .tree-heart {
+      text-align: center;
+      color: var(--rose);
+      font-size: 26px;
+      line-height: 1;
+      margin: 8px 0 10px;
+    }
+
+    .tree-offspring {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      padding-top: 20px;
+    }
+
+    .tree-offspring::before {
+      content: "";
+      position: absolute;
+      left: 6%;
+      right: 6%;
+      top: 0;
+      height: 2px;
+      background: #d8b8b0;
+      border-radius: 999px;
+    }
+
+    .child-node {
+      position: relative;
+      padding: 16px 8px 12px;
+      min-height: 82px;
+      border-radius: 14px;
+      background: #fffefc;
+    }
+
+    .child-node::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -20px;
+      width: 2px;
+      height: 20px;
+      transform: translateX(-50%);
+      background: #d8b8b0;
+      border-radius: 999px;
+    }
+
+    .child-heart {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--rose);
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .child-name {
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .family-back {
+      display: block;
+      margin: 28px auto 0;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 18px;
+      background: var(--rose);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    @media (max-width: 840px) {
+      .tree-row.children { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 700px) {
+      .tree-row.grandparents,
+      .tree-row.parents {
+        grid-template-columns: 1fr;
+      }
+
+      .tree-dual-lines {
+        grid-template-columns: 1fr;
+      }
+
+      .tree-join-block::before {
+        left: 18%;
+        right: 18%;
+      }
+
+      .tree-row.children { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .tree-offspring::before { left: 12%; right: 12%; }
+    }
+
+.family-children { gap: 10px; }
+      .little-ahsos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    
+    /* İlişki zaman çizelgesi */
+    .timeline-section {
+      margin: 36px auto 0;
+      padding: 32px 18px 36px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fffdfb 0%, #f8f1ea 100%);
+      box-shadow: 0 14px 36px #4938320d;
+      scroll-margin-top: 90px;
+    }
+    .timeline-section[hidden] { display: none !important; }
+
+    .timeline-kicker {
+      color: var(--rose);
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .timeline-title {
+      margin: 0 0 8px;
+      font-family: "Lora", serif;
+      font-size: clamp(30px, 6vw, 46px);
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .timeline-subtitle {
+      max-width: 620px;
+      margin: 0 auto 34px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .love-timeline {
+      position: relative;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 8px 0 10px;
+    }
+
+    .love-timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom, transparent, #d9afa9 4%, #d9afa9 96%, transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 0 42px 32px 0;
+      box-sizing: border-box;
+    }
+
+    .timeline-item:nth-child(even) {
+      margin-left: 50%;
+      padding: 0 0 32px 42px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      top: 20px;
+      right: -8px;
+      width: 16px;
+      height: 16px;
+      border: 4px solid #fffaf7;
+      border-radius: 50%;
+      background: var(--rose);
+      box-shadow: 0 0 0 1px #c88f8f;
+      z-index: 2;
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot {
+      left: -8px;
+      right: auto;
+    }
+
+    .timeline-card {
+      position: relative;
+      padding: 18px 18px 17px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 8px 22px #4938320b;
+    }
+
+    .timeline-card::after {
+      content: "";
+      position: absolute;
+      top: 20px;
+      right: -8px;
+      width: 14px;
+      height: 14px;
+      background: rgba(255,255,255,.95);
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      transform: rotate(45deg);
+    }
+
+    .timeline-item:nth-child(even) .timeline-card::after {
+      left: -8px;
+      right: auto;
+      transform: rotate(225deg);
+    }
+
+    .timeline-date {
+      margin-bottom: 6px;
+      color: var(--rose);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+
+    .timeline-event-title {
+      margin: 0;
+      font-family: "Lora", serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.25;
+    }
+
+    .timeline-copy {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .timeline-heart {
+      color: var(--rose);
+      margin-left: 4px;
+    }
+
+    .timeline-empty {
+      border-style: dashed;
+      opacity: .72;
+    }
+
+    .timeline-empty .timeline-event-title {
+      font-size: 18px;
+    }
+
+    .timeline-back {
+      display: block;
+      margin: 6px auto 0;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 18px;
+      background: var(--rose);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    @media (max-width: 700px) {
+      .love-timeline::before {
+        left: 13px;
+        transform: none;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        width: 100%;
+        margin-left: 0;
+        padding: 0 0 26px 42px;
+      }
+
+      .timeline-dot,
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: 5px;
+        right: auto;
+      }
+
+      .timeline-card::after,
+      .timeline-item:nth-child(even) .timeline-card::after {
+        left: -8px;
+        right: auto;
+        transform: rotate(225deg);
+      }
+    }
+
+
+    /* Özel günler */
+    .special-days-section {
+      margin: 36px auto 0;
+      padding: 32px 18px 36px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fffdfb 0%, #f8f1ea 100%);
+      box-shadow: 0 14px 36px #4938320d;
+      scroll-margin-top: 90px;
+    }
+
+    .special-days-section[hidden] {
+      display: none !important;
+    }
+
+    .special-days-kicker {
+      color: var(--rose);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .special-days-title {
+      margin: 0 0 8px;
+      font-family: "Lora", serif;
+      font-size: clamp(30px, 6vw, 46px);
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .special-days-subtitle {
+      max-width: 620px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .special-days-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .special-day-card {
+      position: relative;
+      overflow: hidden;
+      padding: 20px 18px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 8px 22px #4938320b;
+    }
+
+    .special-day-card.featured {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #fff9f7 0%, #f9eeea 100%);
+      border-color: #d7aaa5;
+    }
+
+    .special-day-card::before {
+      content: "♥";
+      position: absolute;
+      right: 14px;
+      top: 10px;
+      color: #d9b0ad;
+      font-size: 26px;
+      opacity: .55;
+    }
+
+    .special-day-label {
+      color: var(--rose);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .special-day-name {
+      margin: 0;
+      font-family: "Lora", serif;
+      font-size: 23px;
+      font-weight: 400;
+      line-height: 1.25;
+    }
+
+    .special-day-date {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .special-day-countdown {
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .special-day-countdown strong {
+      font-family: "Lora", serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--brown);
+    }
+
+    .special-day-countdown span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .special-day-note {
+      margin-top: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .special-day-placeholder {
+      border-style: dashed;
+      opacity: .8;
+    }
+
+    .special-days-footer-note {
+      max-width: 760px;
+      margin: 22px auto 0;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: #fffaf7;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+      border: 1px solid var(--line);
+    }
+
+    .special-days-back {
+      display: block;
+      margin: 24px auto 0;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 18px;
+      background: var(--rose);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    @media (max-width: 700px) {
+      .special-days-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .special-day-card.featured {
+        grid-column: auto;
+      }
+    }
+
+
+    /* Şarkılarımız */
+    .songs-section {
+      margin: 36px auto 0;
+      padding: 32px 18px 36px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fffdfb 0%, #f8f1ea 100%);
+      box-shadow: 0 14px 36px #4938320d;
+      scroll-margin-top: 90px;
+    }
+
+    .songs-section[hidden] {
+      display: none !important;
+    }
+
+    .songs-kicker {
+      color: var(--rose);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .songs-title {
+      margin: 0 0 8px;
+      font-family: "Lora", serif;
+      font-size: clamp(30px, 6vw, 46px);
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .songs-subtitle {
+      max-width: 620px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .songs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .song-card {
+      position: relative;
+      padding: 20px 18px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 8px 22px #4938320b;
+      overflow: hidden;
+    }
+
+    .song-card::before {
+      content: "♫";
+      position: absolute;
+      right: 16px;
+      top: 10px;
+      color: #d9b0ad;
+      font-family: "Lora", serif;
+      font-size: 30px;
+      opacity: .55;
+    }
+
+    .song-number {
+      color: var(--rose);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .song-name {
+      margin: 0;
+      font-family: "Lora", serif;
+      font-size: 23px;
+      font-weight: 400;
+      line-height: 1.25;
+      padding-right: 35px;
+    }
+
+    .song-artist {
+      margin-top: 6px;
+      color: var(--rose);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .song-memory {
+      margin-top: 13px;
+      padding-top: 13px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 13px;
+    }
+
+    .song-placeholder {
+      border-style: dashed;
+      opacity: .8;
+    }
+
+    .songs-footer-note {
+      max-width: 760px;
+      margin: 22px auto 0;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: #fffaf7;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+      border: 1px solid var(--line);
+    }
+
+    .songs-back {
+      display: block;
+      margin: 24px auto 0;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 18px;
+      background: var(--rose);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    @media (max-width: 700px) {
+      .songs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* Ahmoş'tan notlar */
+    .notes-section {
+      margin: 36px auto 0;
+      padding: 32px 18px 36px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fffdfb 0%, #f8f1ea 100%);
+      box-shadow: 0 14px 36px #4938320d;
+      scroll-margin-top: 90px;
+    }
+
+    .notes-section[hidden] {
+      display: none !important;
+    }
+
+    .notes-kicker {
+      color: var(--rose);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .notes-title {
+      margin: 0 0 8px;
+      font-family: "Lora", serif;
+      font-size: clamp(30px, 6vw, 46px);
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .notes-subtitle {
+      max-width: 620px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .note-card {
+      position: relative;
+      padding: 22px 20px 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.84);
+      box-shadow: 0 8px 22px #4938320b;
+      overflow: hidden;
+    }
+
+    .note-card::before {
+      content: "♥";
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      color: #d9b0ad;
+      font-size: 24px;
+      opacity: .5;
+    }
+
+    .note-date {
+      color: var(--rose);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .note-heading {
+      margin: 0;
+      padding-right: 32px;
+      font-family: "Lora", serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    .note-text {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+      white-space: pre-line;
+    }
+
+    .note-signature {
+      margin-top: 16px;
+      color: var(--rose);
+      font-family: "Lora", serif;
+      font-style: italic;
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .note-placeholder {
+      border-style: dashed;
+      opacity: .82;
+    }
+
+    .notes-footer-note {
+      max-width: 760px;
+      margin: 22px auto 0;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: #fffaf7;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+      border: 1px solid var(--line);
+    }
+
+    .notes-back {
+      display: block;
+      margin: 24px auto 0;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 18px;
+      background: var(--rose);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    @media (max-width: 700px) {
+      .notes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* Şarkı bağlantıları */
+    .song-links {
+      margin-top: 14px;
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .song-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fffaf7;
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .song-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 14px #49383212;
+    }
+
+    .song-link.youtube::before {
+      content: "▶";
+      color: var(--rose);
+      font-size: 11px;
+    }
+
+    /* Birlikte yapılacaklar */
+    .bucket-section {
+      margin: 36px auto 0;
+      padding: 32px 18px 36px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fffdfb 0%, #f8f1ea 100%);
+      box-shadow: 0 14px 36px #4938320d;
+      scroll-margin-top: 90px;
+    }
+
+    .bucket-section[hidden] {
+      display: none !important;
+    }
+
+    .bucket-kicker {
+      color: var(--rose);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .bucket-title {
+      margin: 0 0 8px;
+      font-family: "Lora", serif;
+      font-size: clamp(30px, 6vw, 46px);
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .bucket-subtitle {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .bucket-progress {
+      max-width: 760px;
+      margin: 0 auto 22px;
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fffaf7;
+    }
+
+    .bucket-progress-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 9px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .bucket-progress-track {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #eaded7;
+    }
+
+    .bucket-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--rose);
+      border-radius: inherit;
+      transition: width .2s ease;
+    }
+
+    .bucket-list {
+      display: grid;
+      gap: 12px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .bucket-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(255,255,255,.84);
+      cursor: pointer;
+      user-select: none;
+      transition: opacity .15s ease, transform .15s ease, background .15s ease;
+    }
+
+    .bucket-item:hover {
+      transform: translateY(-1px);
+    }
+
+    .bucket-item input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .bucket-check {
+      width: 24px;
+      height: 24px;
+      margin-top: 1px;
+      border: 2px solid #d5b3ab;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      color: #fff;
+      font-size: 14px;
+      line-height: 1;
+      transition: background .15s ease, border-color .15s ease;
+    }
+
+    .bucket-item input:checked + .bucket-check {
+      background: var(--rose);
+      border-color: var(--rose);
+    }
+
+    .bucket-item input:checked + .bucket-check::after {
+      content: "✓";
+    }
+
+    .bucket-item:has(input:checked) {
+      opacity: .68;
+      background: #fbf4f1;
+    }
+
+    .bucket-item:has(input:checked) .bucket-item-title {
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
+    }
+
+    .bucket-item-title {
+      font-family: "Lora", serif;
+      font-size: 18px;
+      line-height: 1.3;
+      color: var(--brown);
+    }
+
+    .bucket-item-note {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .bucket-footer-note {
+      max-width: 760px;
+      margin: 20px auto 0;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fffaf7;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .bucket-back {
+      display: block;
+      margin: 24px auto 0;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 18px;
+      background: var(--rose);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+
+    /* Hayallerimiz */
+    .dreams-section {
+      margin: 36px auto 0;
+      padding: 32px 18px 36px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fffdfb 0%, #f8f1ea 100%);
+      box-shadow: 0 14px 36px #4938320d;
+      scroll-margin-top: 90px;
+    }
+
+    .dreams-section[hidden] {
+      display: none !important;
+    }
+
+    .dreams-kicker {
+      color: var(--rose);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .dreams-title {
+      margin: 0 0 8px;
+      font-family: "Lora", serif;
+      font-size: clamp(30px, 6vw, 46px);
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .dreams-subtitle {
+      max-width: 650px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .dreams-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .dream-card {
+      position: relative;
+      min-height: 180px;
+      padding: 22px 20px 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.84);
+      box-shadow: 0 8px 22px #4938320b;
+      overflow: hidden;
+    }
+
+    .dream-card.featured {
+      grid-column: 1 / -1;
+      min-height: 210px;
+      background: linear-gradient(135deg, #fff9f7 0%, #f7ece8 100%);
+      border-color: #d7aaa5;
+    }
+
+    .dream-card::before {
+      content: "✦";
+      position: absolute;
+      right: 16px;
+      top: 12px;
+      color: #d9b0ad;
+      font-size: 25px;
+      opacity: .55;
+    }
+
+    .dream-label {
+      color: var(--rose);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .dream-name {
+      margin: 0;
+      padding-right: 34px;
+      font-family: "Lora", serif;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.28;
+    }
+
+    .dream-text {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .dream-meta {
+      display: inline-flex;
+      margin-top: 15px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fffaf7;
+      color: var(--rose);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .dream-placeholder {
+      border-style: dashed;
+      opacity: .82;
+    }
+
+    .dreams-footer-note {
+      max-width: 760px;
+      margin: 22px auto 0;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: #fffaf7;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+      border: 1px solid var(--line);
+    }
+
+    .dreams-back {
+      display: block;
+      margin: 24px auto 0;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 18px;
+      background: var(--rose);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    @media (max-width: 700px) {
+      .dreams-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dream-card.featured {
+        grid-column: auto;
+      }
+    }
+
+
+    /* Ahsoş'tan notlar */
+    .ahsos-notes-section {
+      margin: 36px auto 0;
+      padding: 32px 18px 36px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fffdfb 0%, #f8f1ea 100%);
+      box-shadow: 0 14px 36px #4938320d;
+      scroll-margin-top: 90px;
+    }
+
+    .ahsos-notes-section[hidden] {
+      display: none !important;
+    }
+
+    .ahsos-notes-kicker {
+      color: var(--rose);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .ahsos-notes-title {
+      margin: 0 0 8px;
+      font-family: "Lora", serif;
+      font-size: clamp(30px, 6vw, 46px);
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .ahsos-notes-subtitle {
+      max-width: 620px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .ahsos-notes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .ahsos-note-card {
+      position: relative;
+      padding: 22px 20px 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.84);
+      box-shadow: 0 8px 22px #4938320b;
+      overflow: hidden;
+    }
+
+    .ahsos-note-card::before {
+      content: "♡";
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      color: #d9b0ad;
+      font-size: 26px;
+      opacity: .55;
+    }
+
+    .ahsos-note-date {
+      color: var(--rose);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .ahsos-note-heading {
+      margin: 0;
+      padding-right: 32px;
+      font-family: "Lora", serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    .ahsos-note-text {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+      white-space: pre-line;
+    }
+
+    .ahsos-note-signature {
+      margin-top: 16px;
+      color: var(--rose);
+      font-family: "Lora", serif;
+      font-style: italic;
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .ahsos-note-placeholder {
+      border-style: dashed;
+      opacity: .82;
+    }
+
+    .ahsos-notes-footer-note {
+      max-width: 760px;
+      margin: 22px auto 0;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: #fffaf7;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+      border: 1px solid var(--line);
+    }
+
+    .ahsos-notes-back {
+      display: block;
+      margin: 24px auto 0;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 18px;
+      background: var(--rose);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    @media (max-width: 700px) {
+      .ahsos-notes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* Basit içerik listeleri */
+    .simple-section {
+      margin: 36px auto 0;
+      padding: 32px 18px 36px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fffdfb 0%, #f8f1ea 100%);
+      box-shadow: 0 14px 36px #4938320d;
+      scroll-margin-top: 90px;
+    }
+
+    .simple-section[hidden] {
+      display: none !important;
+    }
+
+    .simple-kicker {
+      color: var(--rose);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .simple-title {
+      margin: 0 0 8px;
+      font-family: "Lora", serif;
+      font-size: clamp(30px, 6vw, 46px);
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .simple-subtitle {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .recipe-list,
+    .ordered-simple-list {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .recipe-item {
+      padding: 19px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.84);
+      box-shadow: 0 7px 18px #49383209;
+    }
+
+    .recipe-item + .recipe-item {
+      margin-top: 12px;
+    }
+
+    .recipe-name {
+      margin: 0;
+      font-family: "Lora", serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--brown);
+    }
+
+    .recipe-text {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .ordered-simple-list {
+      counter-reset: simple-item;
+      display: grid;
+      gap: 11px;
+    }
+
+    .ordered-simple-item {
+      counter-increment: simple-item;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 11px;
+      align-items: center;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(255,255,255,.84);
+      box-shadow: 0 7px 18px #49383208;
+    }
+
+    .ordered-simple-item::before {
+      content: counter(simple-item);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #fff7f4;
+      border: 1px solid #d8b4ad;
+      color: var(--rose);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .ordered-simple-text {
+      font-family: "Lora", serif;
+      font-size: 18px;
+      line-height: 1.35;
+      color: var(--brown);
+    }
+
+    .simple-note {
+      max-width: 760px;
+      margin: 20px auto 0;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fffaf7;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .simple-back {
+      display: block;
+      margin: 24px auto 0;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 18px;
+      background: var(--rose);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+
+    /* Firebase ortak not alanı */
+    .cloud-panel {max-width:860px;margin:18px auto 28px;padding:24px;border:1px solid var(--line);border-radius:20px;background:#fffaf7;scroll-margin-top:90px}
+    .cloud-panel[hidden],.cloud-form[hidden],.cloud-panel button[hidden]{display:none!important}
+    .cloud-panel h2 {font-family:"Lora",serif;font-weight:400;font-size:26px;margin:0 0 10px}
+    .cloud-panel h3 {font-family:"Lora",serif;font-weight:400;font-size:22px;margin:12px 0}
+    .cloud-help,.cloud-status,.cloud-session{font-size:13px;line-height:1.65;color:var(--muted)}
+    .cloud-form{display:grid;gap:9px;margin-top:14px}
+    .cloud-form label{font-weight:700;font-size:12px;color:var(--brown)}
+    .cloud-form input,.cloud-form textarea{box-sizing:border-box;width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--brown);font:inherit}
+    .cloud-form textarea{resize:vertical}
+    .cloud-btn{cursor:pointer;border:0;border-radius:999px;padding:11px 17px;background:var(--rose);color:white;font:inherit;font-size:13px}
+    .cloud-secondary{background:#efe0dd;color:var(--brown)}
+    .cloud-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .cloud-notes-list{display:grid;gap:14px;max-width:860px;margin:0 auto}
+    .cloud-note-card{padding:20px;border:1px solid var(--line);border-radius:17px;background:white}
+    .cloud-note-card h3{font-family:"Lora",serif;font-size:22px;font-weight:400;margin:5px 0 10px;overflow-wrap:anywhere}
+    .cloud-note-card p{font-size:14px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
+    .cloud-note-date{color:var(--rose);font-size:12px}
+    .cloud-note-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+    .cloud-note-buttons button{border:1px solid var(--line);border-radius:999px;padding:7px 12px;background:#fff7f4;cursor:pointer;color:var(--brown);font:inherit;font-size:12px}
+
+
+    /* Mobilde düzenlenebilen ortak içerikler */
+    .shared-controls {max-width:860px;margin:0 auto 17px}
+    .shared-controls .shared-message{padding:12px 14px;background:#fffaf7;border:1px solid var(--line);border-radius:13px;color:var(--muted);font-size:13px;line-height:1.65}
+    .shared-form{padding:17px;border:1px solid var(--line);border-radius:17px;background:#fff9f6;display:grid;gap:11px;margin-bottom:16px}
+    .shared-form h3{font:normal 21px "Lora",serif;margin:0}
+    .shared-field{display:grid;gap:5px}
+    .shared-field label{font-size:12px;color:var(--brown);font-weight:700}
+    .shared-field input,.shared-field textarea{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--brown);padding:11px 12px;font:inherit;font-size:14px}
+    .shared-field textarea{resize:vertical;min-height:84px}
+    .shared-form-row{display:flex;gap:9px;flex-wrap:wrap}
+    .shared-btn{border:0;border-radius:999px;padding:9px 14px;background:var(--rose);color:#fff;font:inherit;font-size:12px;cursor:pointer}
+    .shared-btn.alt{background:#efe0dd;color:var(--brown)}
+    .shared-btn:disabled{opacity:.5;cursor:wait}
+    .shared-inline-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+    .shared-inline-actions button{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:#fffaf7;color:var(--brown);font:inherit;font-size:12px;cursor:pointer}
+    .shared-status{font-size:12px;color:var(--muted);min-height:16px;overflow-wrap:anywhere}
+    .shared-empty{padding:22px 18px;border:1px dashed var(--line);border-radius:16px;text-align:center;color:var(--muted);background:#fffaf7;font-size:13px;grid-column:1/-1}
+    .shared-list .song-card,.shared-list .dream-card,.shared-list .recipe-item{opacity:1;border-style:solid}
+    .shared-list .song-card .song-memory{white-space:pre-wrap}
+    .shared-list .dream-card .dream-text{white-space:pre-wrap}
+    .shared-list .recipe-item .recipe-text{white-space:pre-wrap}
+    .shared-list .timeline-copy{white-space:pre-wrap}
+    .shared-list .special-day-note{white-space:pre-wrap}
+    .shared-list .ordered-simple-item{grid-template-columns:34px minmax(0,1fr);align-items:start}
+    .shared-list .ordered-simple-text{overflow-wrap:anywhere}
+    .love-mail-tools{text-align:center;margin:9px 0 24px;font-size:12px;color:var(--muted)}
+    .love-mail-tools button{font-size:12px}
+    .love-mail-tools p{margin:8px 0 0;line-height:1.6}
+    .shared-count{font-size:12px;color:var(--rose);font-weight:700;margin:0 0 12px}
+    .shared-link{color:var(--rose);text-decoration:underline;cursor:pointer;background:none;border:0;font:inherit;padding:0}
+    .shared-form .shared-check{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--brown)}
+    .shared-form .shared-check input{width:18px;height:18px}
+    .shared-list .special-day-card.featured{grid-column:1/-1}
+    @media(max-width:650px){.shared-form{padding:13px}.shared-inline-actions{gap:5px}}
+
+  /* ===== v17: Oyun Bahçemiz + Wishlist ===== */
+.fun-section {max-width:1000px;margin:44px auto 54px;padding:28px 22px;border:1px solid var(--line);border-radius:25px;background:#fffaf7;scroll-margin-top:90px;text-align:center}
+.fun-section[hidden] {display:none!important}
+.fun-kicker{color:var(--rose);font-weight:750;font-size:11px;letter-spacing:2.4px}
+.fun-title{font-family:"Lora",serif;font-size:clamp(27px,4vw,38px);font-weight:400;margin:9px 0 10px;color:var(--brown)}
+.fun-subtitle{color:var(--muted);font-size:14px;line-height:1.65;max-width:690px;margin:0 auto 25px}
+.fun-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;align-items:start}
+.fun-card{min-width:0;border:1px solid var(--line);border-radius:21px;background:#fff;padding:22px 18px;position:relative}
+.fun-card h3{font-family:"Lora",serif;font-size:23px;font-weight:400;margin:3px 0 11px}
+.fun-card p{color:var(--muted);font-size:13px;line-height:1.65}
+.fun-card.wide{grid-column:1/-1}
+.fun-action,.fun-minor{display:inline-flex;justify-content:center;align-items:center;gap:7px;border:0;border-radius:999px;background:var(--rose);padding:12px 20px;color:#fff;font:inherit;font-size:13px;cursor:pointer;min-height:43px;transition:transform .14s,opacity .14s}
+.fun-action:hover:not(:disabled){transform:translateY(-2px)}
+.fun-action:disabled,.fun-minor:disabled{opacity:.52;cursor:not-allowed}
+.fun-minor{border:1px solid #e7d0cc;background:#fff6f4;color:var(--brown);padding:9px 14px;min-height:36px}
+.fun-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:14px 0}
+.fun-select{min-height:42px;border-radius:12px;border:1px solid var(--line);background:#fff;padding:9px 13px;color:var(--brown);font:inherit;font-size:13px;max-width:100%;min-width:130px}
+.fun-result{border:1px solid #eededb;border-radius:16px;background:#fff8f6;padding:20px;margin:15px 0 4px;min-height:85px;overflow-wrap:anywhere}
+.fun-result h4{margin:4px 0 9px;font-family:"Lora",serif;font-size:22px;font-weight:500}
+.fun-label{font-size:11px;color:#a66672;letter-spacing:1.1px;text-transform:uppercase;font-weight:700}
+.fun-status{min-height:19px;color:var(--muted);font-size:12px;margin:10px 0 3px;line-height:1.5}
+.fun-surprise-visual img{display:block;max-width:min(100%,330px);max-height:340px;width:auto;height:auto;object-fit:contain;border-radius:13px;margin:12px auto}
+.fun-surprise-visual a{color:#ad6272;word-break:break-word}
+.scratch-wrap{position:relative;width:min(100%,420px);margin:12px auto;height:clamp(185px,50vw,225px);border-radius:14px;overflow:hidden;border:1px solid #e9c9ce;background:linear-gradient(135deg,#fff0e7,#ffe3ef)}
+.scratch-prize{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:14px 18px;color:#9b3f64;font-family:"Lora",serif;font-size:clamp(15px,3.9vw,21px);line-height:1.3;text-align:center;overflow-wrap:anywhere;word-break:normal;white-space:normal;hyphens:auto;font-weight:600}
+.scratch-wrap canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair}
+.wheel-shell{position:relative;width:min(100%,306px);margin:8px auto 13px;aspect-ratio:1}
+.wheel-shell canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+.wheel-pointer{position:absolute;top:-3px;left:50%;transform:translateX(-50%);z-index:2;width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:25px solid #8b4a61;filter:drop-shadow(0 2px 2px #0002);pointer-events:none}
+.confetti-canvas{position:absolute;inset:-10%;width:120%;height:120%;z-index:4;pointer-events:none}
+.date-idea{max-width:630px;margin:14px auto 10px}
+.fun-tags{font-size:12px;color:var(--muted)}
+.wish-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;text-align:left}
+.wish-column{border:2px solid var(--wish-border);border-radius:19px;background:var(--wish-bg);padding:18px 14px;min-width:0}
+.wish-column h3{font-family:"Lora",serif;font-size:21px;font-weight:500;color:var(--wish-border);margin:1px 0 14px;text-align:center}
+.wish-ahso{--wish-border:#d96c99;--wish-bg:#fff0f6}
+.wish-ahmos{--wish-border:#6a9fd4;--wish-bg:#eef7ff}
+.wish-items{display:grid;gap:10px}
+.wish-item{border:1px solid color-mix(in srgb,var(--wish-border) 42%,white);background:#ffffffd9;border-radius:12px;display:flex;align-items:center;gap:8px;padding:10px;text-align:left}
+.wish-item .wish-name{flex:1;min-width:0;font-size:13px;overflow-wrap:anywhere}
+.wish-item.is-done .wish-name{text-decoration:line-through;color:#948b8b}
+.wish-item button{background:transparent;border:0;padding:6px;border-radius:7px;color:#806e70;cursor:pointer;font-size:12px}
+.wish-item button:hover{background:#ffffff}
+.wish-item input{width:17px;height:17px;accent-color:var(--wish-border)}
+.wish-form{margin:20px auto 8px;display:grid;grid-template-columns:minmax(110px,190px) minmax(0,1fr) auto;gap:10px;max-width:800px}
+.wish-form input{min-width:0;border:1px solid var(--line);padding:12px;border-radius:12px;font:inherit;background:white;color:var(--brown)}
+.wish-muted{color:var(--muted);font-size:12px;line-height:1.65}
+.fun-section button:focus-visible,.fun-section select:focus-visible,.fun-section input:focus-visible{outline:3px solid #bb829a;outline-offset:2px}
+@media(max-width:680px){.fun-grid,.wish-grid{grid-template-columns:1fr}.fun-card.wide{grid-column:auto}.fun-section{padding:21px 13px}.fun-card{padding:17px 13px}.wish-form{grid-template-columns:1fr}.wheel-shell{width:min(100%,295px)}}
+@media(prefers-reduced-motion:reduce){.fun-action{transition:none}}
+
+</style>
 </head>
 
-<body>
+<body class="locked">
+  
+  <section class="auth-screen" id="authScreen" aria-label="Özel arşiv girişi">
+    <div class="auth-card">
+      <div class="eyebrow">♥ AHSOŞ & AHMOŞ ♥</div>
+      <h1>Sadece ikimize ait cozy place ♥</h1>
+      <p>İsmini seç, kendi şifreni gir.</p>
+      <label for="loginUser">Kim giriş yapıyor?</label>
+      <select id="loginUser"><option value="ahmos">Ahmoş</option><option value="ahso">Ahsoş</option></select>
+      <label for="loginPass">Şifren</label><input id="loginPass" type="password" autocomplete="current-password" placeholder="Kendi şifreni gir">
+      <button id="loginBtn" type="button">Giriş yap</button>
+      <div id="loginStatus" class="auth-status" role="status" aria-live="polite">Giriş bilgileri yalnızca bu tarayıcıda işlenir.</div>
+    </div>
+  </section>
+
   <header class="topbar">
     <div>
-      <div class="eyebrow">İKİMİZE AİT</div>
-      <div class="brand">Bizim küçük dünyamız ♥</div>
+      <div class="eyebrow">♥ AHSOŞ & AHMOŞ ♥</div>
+      <div class="brand">Sadece ikimize ait cozy place ♥</div>
     </div>
     <button class="menu-button" id="openMenu"
       aria-label="Menüyü aç" aria-expanded="false">☰</button>
@@ -272,18 +1974,17 @@
     <div class="eyebrow">BİZİM HİKÂYEMİZ</div>
     <h1 id="greeting">Birlikte, nice güzel günlere.</h1>
     <p class="intro">
-      Küçük anlar, uzun hikâyeler.
-      Burası birlikte biriktirdiğimiz her şeyin köşesi.
+      Burası birlikte biriktirdiğimiz her şeyin köşesi olsun.
     </p>
 
     <section class="memory-frame" aria-label="Anı fotoğrafı">
-      <div class="memory-art">
+      <div class="memory-art" id="memoryArt">
         <div class="memory-message" id="memoryMessage">
           En güzel hikâyeler, birlikte yazılanlardır. ♥
         </div>
       </div>
       <div class="caption" id="memoryCaption">
-        Fotoğraf arşivimiz burada hayat bulacak.
+        Fotoğraf arşivimizzz.
       </div>
     </section>
 
@@ -298,9 +1999,356 @@
       </div>
     </section>
 
-    <button class="love-button" id="loveButton">
-      ♥ Seni seviyorum
+    <button class="love-button" id="loveButton" type="button" title="Bizim Hikâyemiz hesabından sevgiline e-posta gönder">
+      ♥ Seni seviyorum maili gönder!
     </button>
+    <div class="love-mail-tools">
+      <p id="loveMailInfo" role="status" aria-live="polite">Sitenin Gmail hesabından diğer kişiye otomatik gönderim. İlk kurulum için Apps Script bağlantısı gerekir.</p>
+    </div>
+
+
+    
+    <section class="family-section" id="familyTreeSection" hidden aria-labelledby="familyTreeTitle">
+      <div class="family-kicker"> </div>
+      <h2 class="family-title" id="familyTreeTitle">Soy ağacımız ♥</h2>
+      <p class="family-subtitle">
+        İki ayrı aileden başlayan hikâye, Ahmoş ve Ahsoş'ta birleşiyor.
+      </p>
+
+      <div class="tree-shell">
+        <div class="tree-row grandparents">
+          <div class="tree-node couple">
+            <div class="tree-main-text">Hale + Mustafa</div>
+            <div class="tree-sub-text">Ahsoş'un kökü</div>
+          </div>
+          <div class="tree-node couple">
+            <div class="tree-main-text">Aycan + Bahri</div>
+            <div class="tree-sub-text">Ahmoş'un kökü</div>
+          </div>
+        </div>
+
+        <div class="tree-dual-lines">
+          <div class="tree-line-center"></div>
+          <div class="tree-line-center"></div>
+        </div>
+
+        <div class="tree-row parents">
+          <div class="tree-node person">
+            <div class="tree-main-text">Ahsoş</div>
+          </div>
+          <div class="tree-node person">
+            <div class="tree-main-text">Ahmoş</div>
+          </div>
+        </div>
+
+        <div class="tree-heart">♥</div>
+
+        <div class="tree-join-block">
+          <div class="tree-node union">
+            <div class="tree-main-text">Ahmoş + Ahsoş</div>
+            <div class="tree-helper-text">şööööle bi</div>
+            <div class="tree-sub-text">= 10 tane küçük Ahsoş</div>
+          </div>
+        </div>
+
+        <div class="tree-line-center" style="height:24px;"></div>
+
+        <div class="tree-offspring">
+          <div class="tree-row children" aria-label="Küçük Ahsoşlar">
+            <div class="tree-node child-node"><span class="child-heart">♥</span><div class="child-name">Küçük Ahsoş-1</div></div>
+            <div class="tree-node child-node"><span class="child-heart">♥</span><div class="child-name">Küçük Ahsoş-2</div></div>
+            <div class="tree-node child-node"><span class="child-heart">♥</span><div class="child-name">Küçük Ahsoş-3</div></div>
+            <div class="tree-node child-node"><span class="child-heart">♥</span><div class="child-name">Küçük Ahsoş-4</div></div>
+            <div class="tree-node child-node"><span class="child-heart">♥</span><div class="child-name">Küçük Ahsoş-5</div></div>
+            <div class="tree-node child-node"><span class="child-heart">♥</span><div class="child-name">Küçük Ahsoş-6</div></div>
+            <div class="tree-node child-node"><span class="child-heart">♥</span><div class="child-name">Küçük Ahsoş-7</div></div>
+            <div class="tree-node child-node"><span class="child-heart">♥</span><div class="child-name">Küçük Ahsoş-8</div></div>
+            <div class="tree-node child-node"><span class="child-heart">♥</span><div class="child-name">Küçük Ahsoş-9</div></div>
+            <div class="tree-node child-node"><span class="child-heart">♥</span><div class="child-name">Küçük Ahsoş-10</div></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="family-back" id="familyBackButton" type="button">Ana sayfaya dön</button>
+    </section>
+
+
+    
+    <section class="timeline-section" id="timelineSection" hidden aria-labelledby="timelineTitle">
+      <div class="timeline-kicker">BİZİM HİKÂYEMİZ</div>
+      <h2 class="timeline-title" id="timelineTitle">İlişki zaman çizelgesi ♥</h2>
+      <p class="timeline-subtitle">
+        Bizim için önemli olan anları, başladığı günden bugüne aynı çizgide topluyoruz.
+      </p>
+
+      <div class="shared-controls" data-shared-controls="timeline"></div>
+
+      <div class="shared-list love-timeline" data-shared-list="timeline">
+<article class="timeline-item pinned-beginning">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-card">
+            <div class="timeline-date">12 Aralık 2025</div>
+            <h3 class="timeline-event-title">Biz başladık <span class="timeline-heart">♥</span></h3>
+            <p class="timeline-copy">
+              Ahmoş ve Ahsoş'un hikâyesinin başlangıç noktası.
+            </p>
+          </div>
+        </article>
+</div>
+
+      <button class="timeline-back" id="timelineBackButton" type="button">Ana sayfaya dön</button>
+    </section>
+
+    
+    <section class="special-days-section" id="specialDaysSection" hidden aria-labelledby="specialDaysTitle">
+      <div class="special-days-kicker">BİZİM TAKVİMİMİZ</div>
+      <h2 class="special-days-title" id="specialDaysTitle">Özel günlerimiz ♥</h2>
+      <p class="special-days-subtitle">
+        Takvimde sıradan görünen ama bizim için başka anlamı olan günler.
+      </p>
+
+      <div class="shared-controls" data-shared-controls="specialDays"></div>
+
+      <div class="shared-list special-days-grid" data-shared-list="specialDays"><article class="special-day-card featured">
+          <div class="special-day-label">Yıldönümümüz</div>
+          <h3 class="special-day-name">12 Aralık ♥</h3>
+          <div class="special-day-date">Bizim başlangıcımız: 12 Aralık 2025</div>
+
+          <div class="special-day-countdown" aria-live="polite">
+            <strong id="anniversaryCountdown">—</strong>
+            <span id="anniversaryCountdownText">gün kaldı</span>
+          </div>
+
+          <p class="special-day-note" id="anniversaryYearText">
+            Bir sonraki yıldönümümüze kalan süre hesaplanıyor.
+          </p>
+        </article></div>
+
+      <button class="special-days-back" id="specialDaysBackButton" type="button">Ana sayfaya dön</button>
+    </section>
+
+    
+    <section class="songs-section" id="songsSection" hidden aria-labelledby="songsTitle">
+      <div class="songs-kicker">BİZİM PLAYLİSTİMİZ</div>
+      <h2 class="songs-title" id="songsTitle">Şarkılarımız ♥</h2>
+      <p class="songs-subtitle">
+        Bazı şarkılar sadece dinlenmez bazen yaşanır.
+      </p>
+
+      <div class="shared-controls" data-shared-controls="songs"></div>
+
+      <div class="shared-list songs-grid" data-shared-list="songs"></div>
+
+      <div class="songs-footer-note">
+        Şarkı eklerken YouTube veya başka bir bağlantıyı isteğe bağlı yazabilirsin.
+      </div>
+
+      <button class="songs-back" id="songsBackButton" type="button">Ana sayfaya dön</button>
+    </section>
+
+    
+    <section class="notes-section" id="ahmosNotesSection" hidden aria-labelledby="ahmosNotesTitle">
+      <div class="notes-kicker">AHMOŞ'TAN AHSOŞ'A</div>
+      <h2 class="notes-title" id="ahmosNotesTitle">Ahmoş'tan notlar ♥</h2>
+      <p class="notes-subtitle">
+        Bazen uzun uzun konuşmaya gerek yok. Birkaç cümle, bir günü ya da bir hissi saklamaya yetiyor.
+      </p>
+
+      <div class="cloud-notes-list" id="ahmosCloudNotes"><p class="cloud-help">Notları görmek için aşağıdaki Firebase girişini yap.</p></div>
+
+      <div class="notes-footer-note">Notlar ortak hesabınızla eşzamanlı güncellenir. Yeni not yazmak için aşağıdaki düzenleyiciyi kullan.</div>
+
+      <button class="notes-back" id="ahmosNotesBackButton" type="button">Ana sayfaya dön</button>
+    </section>
+
+    
+    
+    <section class="simple-section" id="bucketSection" hidden aria-labelledby="bucketTitle">
+      <div class="simple-kicker">BİRLİKTE YAPACAKLARIMIZ</div>
+      <h2 class="simple-title" id="bucketTitle">Birlikte yapılacaklar ♥</h2>
+      <p class="simple-subtitle">
+        Aklımıza geldikçe sırayla ekleyeceğimiz ortak planlarımız.
+      </p>
+
+      <div class="shared-controls" data-shared-controls="todo"></div>
+
+      <div class="shared-list ordered-simple-list" data-shared-list="todo"></div>
+
+      <div class="simple-note">
+        Liste anında senkronize olur; maddeleri yukarı ve aşağı taşıyabilirsin.
+      </div>
+
+      <button class="simple-back" id="bucketBackButton" type="button">Ana sayfaya dön</button>
+    </section>
+
+
+    
+    <section class="dreams-section" id="dreamsSection" hidden aria-labelledby="dreamsTitle">
+      <div class="dreams-kicker">BİRLİKTE BAKTIĞIMIZ YER</div>
+      <h2 class="dreams-title" id="dreamsTitle">Hayallerimiz ♥</h2>
+      <p class="dreams-subtitle">
+        Bugünden değil, biraz daha ileriden baktığımızda görmek istediğimiz şeyler.
+      </p>
+
+      <div class="shared-controls" data-shared-controls="dreams"></div>
+
+      <div class="shared-list dreams-grid" data-shared-list="dreams"></div>
+
+      <div class="dreams-footer-note">
+        Bir hayali gerçekleştirdiğinizde kartını “Gerçekleşti” olarak işaretleyebilirsiniz.
+      </div>
+
+      <button class="dreams-back" id="dreamsBackButton" type="button">Ana sayfaya dön</button>
+    </section>
+
+    
+    <section class="ahsos-notes-section" id="ahsosNotesSection" hidden aria-labelledby="ahsosNotesTitle">
+      <div class="ahsos-notes-kicker">AHSOŞ'TAN AHMOŞ'A</div>
+      <h2 class="ahsos-notes-title" id="ahsosNotesTitle">Ahsoş'tan notlar ♥</h2>
+      <p class="ahsos-notes-subtitle">
+        Ahsoş'un Ahmoş'a bıraktığı küçük cümleler, anılar ve içinden gelenler.
+      </p>
+
+      <div class="cloud-notes-list" id="ahsoCloudNotes"><p class="cloud-help">Notları görmek için aşağıdaki Firebase girişini yap.</p></div>
+
+      <div class="ahsos-notes-footer-note">Notlar ortak hesabınızla eşzamanlı güncellenir. Yeni not yazmak için aşağıdaki düzenleyiciyi kullan.</div>
+
+      <button class="ahsos-notes-back" id="ahsosNotesBackButton" type="button">Ana sayfaya dön</button>
+    </section>
+
+    
+
+    <section class="cloud-panel" id="cloudNotesPanel" hidden aria-label="Ortak hesabımız ve not düzenleyici">
+      <h2>Ortak hesabımız ♥</h2>
+      <p class="cloud-help">Düzenleme ve ekleme yapmak için bir kez sana verdiğim şifreyi girmen yeterli ahsoş. Mail: atasahsen4@gmail.com Şifre: ahsosatos2004</p>
+      <div class="cloud-session" id="cloudSessionText">Firebase hesabına giriş yapılmadı.</div>
+      <form id="cloudLoginForm" class="cloud-form">
+        <label for="cloudEmail">E-posta</label>
+        <input id="cloudEmail" type="email" autocomplete="username" required placeholder="E-posta adresin" />
+        <label for="cloudPassword">Firebase şifresi</label>
+        <input id="cloudPassword" type="password" autocomplete="current-password" required placeholder="Firebase hesap şifren" />
+        <button type="submit" class="cloud-btn">Bir kez giriş yap</button>
+      </form>
+      <button type="button" id="cloudBindAccount" class="cloud-btn" hidden>Bu hesabı site profilime bağla ♥</button>
+      <button type="button" id="cloudLogout" class="cloud-btn cloud-secondary" hidden>Firebase hesabından çık / hesap değiştir</button>
+      <button type="button" id="cloudResetBinding" class="cloud-btn cloud-secondary" hidden>Bu cihazdaki hesap eşlemesini sıfırla</button>
+      <form id="cloudNoteForm" class="cloud-form" hidden>
+        <h3 id="cloudEditorHeading">Yeni not ♥</h3>
+        <label for="cloudNoteTitle">Başlık</label>
+        <input id="cloudNoteTitle" maxlength="150" required placeholder="Notun başlığı" />
+        <label for="cloudNoteContent">Notun</label>
+        <textarea id="cloudNoteContent" maxlength="10000" rows="5" required placeholder="Buraya yaz..."></textarea>
+        <div class="cloud-actions">
+          <button type="submit" class="cloud-btn" id="cloudNoteSubmit">Notu kaydet</button>
+          <button type="button" class="cloud-btn cloud-secondary" id="cloudCancelEdit" hidden>Vazgeç</button>
+        </div>
+      </form>
+      <p class="cloud-status" id="cloudStatus" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="simple-section" id="recipesSection" hidden aria-labelledby="recipesTitle">
+      <div class="simple-kicker">BİZİM MUTFAĞIMIZ</div>
+      <h2 class="simple-title" id="recipesTitle">Yemek tarifleri ♥</h2>
+      <p class="simple-subtitle">
+        Sevdiğimiz yemekleri ve kendi tariflerimizi burada saklayacağız.
+      </p>
+
+      <div class="shared-controls" data-shared-controls="recipes"></div>
+
+      <div class="shared-list recipe-list" data-shared-list="recipes"></div>
+
+      <div class="simple-note">
+        Keyif aldığımız tariflerrr.
+      </div>
+
+      <button class="simple-back" id="recipesBackButton" type="button">Ana sayfaya dön</button>
+    </section>
+
+    <section class="simple-section" id="locationsSection" hidden aria-labelledby="locationsTitle">
+      <div class="simple-kicker">BİRLİKTE GİDECEĞİMİZ YERLER</div>
+      <h2 class="simple-title" id="locationsTitle">Gidilecek lokasyonlar ♥</h2>
+      <p class="simple-subtitle">
+        Bir gün birlikte görmek istediğimiz yerleri sırayla biriktireceğiz.
+      </p>
+
+      <div class="shared-controls" data-shared-controls="locations"></div>
+
+      <div class="shared-list ordered-simple-list" data-shared-list="locations"></div>
+
+      <div class="simple-note">
+        Buraya şehir, ülke, restoran, manzara noktası veya sadece ikinizin gitmek istediği herhangi bir yeri ekleyebilirsin.
+      </div>
+
+      <button class="simple-back" id="locationsBackButton" type="button">Ana sayfaya dön</button>
+    </section>
+
+    <!-- v17: Gmail gönderim akışı bilinçli olarak değiştirilmemiştir. -->
+    <section class="fun-section" id="gamesSection" hidden aria-labelledby="gamesTitle">
+      <div class="fun-kicker">İKİ KİŞİLİK EĞLENCEMİZ</div>
+      <h2 class="fun-title" id="gamesTitle">Oyun Bahçemiz ♥</h2>
+      <p class="fun-subtitle">Biraz şans, biraz kahkaha, bolca biz. Sürpriz aç, çarkı döndür veya bir sonraki buluşmayı kaderimize bırak.</p>
+      <div class="fun-grid">
+        <article class="fun-card">
+          <div class="fun-kicker">01 · SÜRPRİZ KUTUSU</div>
+          <h3>Bugün ne çıkacak? ♥</h3>
+          <p>Kazı kazan, şifreli galeriden rastgele anı, aşk görevi veya günün şarkısı.</p>
+          <button type="button" class="fun-action" id="surpriseButton">🎁 Sürprizimi aç</button>
+          <div class="fun-result" id="surpriseResult" aria-live="polite">Kutumuz senin için bir sürpriz saklıyor.</div>
+          <div class="fun-status" id="surpriseStatus" role="status"></div>
+        </article>
+        <article class="fun-card">
+          <div class="fun-kicker">02 · AŞK ÇARKI</div>
+          <h3>Çarkı çevir! ♥</h3>
+          <p>Butona basabilir veya çarkı parmağınla döndürebilirsin. Sonuçta sürprizin açılır.</p>
+          <div class="wheel-shell" id="wheelShell">
+            <div class="wheel-pointer" aria-hidden="true"></div>
+            <canvas id="loveWheelCanvas" width="600" height="600" aria-label="Dört dilimli çevrilebilir aşk çarkı"></canvas>
+            <canvas id="wheelConfetti" class="confetti-canvas" width="720" height="720" aria-hidden="true"></canvas>
+          </div>
+          <button type="button" class="fun-action" id="spinWheelButton">♥ Çarkı döndür</button>
+          <div class="fun-status" id="wheelStatus" aria-live="polite">Kazı kazan · Rastgele anı · Aşk görevi · Günün şarkısı</div>
+        </article>
+        <article class="fun-card wide">
+          <div class="fun-kicker">03 · BUGÜN NE YAPSAK?</div>
+          <h3>Buluşmamızı şans seçsin ♥</h3>
+          <p>Ne yapsak diye karar veremediğimizde burayı kullanabiliriz yağni.</p>
+          <div class="fun-controls">
+            <label for="dateSide" class="fun-label">Yaka</label>
+            <select class="fun-select" id="dateSide"><option value="all">Fark etmez</option><option value="anatolia">Anadolu</option><option value="europe">Avrupa</option></select>
+            <label for="dateCategory" class="fun-label">Tür</label>
+            <select class="fun-select" id="dateCategory">
+              <option value="all">Her şey olabilir</option><option value="Romantik">Romantik</option><option value="Yeme & İçme">Yeme & İçme</option><option value="Eğlence">Eğlence</option><option value="Doğa">Doğa</option><option value="Keşif">Keşif</option><option value="Kültür">Kültür</option>
+            </select>
+          </div>
+          <p class="fun-tags" id="dateCount">70 fikir hazır</p>
+          <div class="fun-result date-idea" id="dateResult" aria-live="polite"><h4>Bugün ne yapsak?</h4><p>Haydi bir buluşma seçelim.</p></div>
+          <div class="fun-controls">
+            <button class="fun-action" type="button" id="dateRollButton">✨ Buluşmamızı seç</button>
+            <button class="fun-minor" type="button" id="dateAcceptButton" hidden>♥ Kabul ediyoruz</button>
+            <button class="fun-minor" type="button" id="dateAddTodoButton" hidden>+ Yapılacaklara ekle</button>
+          </div>
+          <div class="fun-status" id="dateStatus" role="status"></div>
+        </article>
+      </div>
+      <button class="simple-back" type="button" id="gamesBackButton">Ana sayfaya dön</button>
+    </section>
+
+    <section class="fun-section" id="wishlistSection" hidden aria-labelledby="wishlistTitle">
+      <div class="fun-kicker">BİR GÜN BİZİM OLSUN</div>
+      <h2 class="fun-title" id="wishlistTitle">Wishlist'imiz ♥</h2>
+      <p class="fun-subtitle">Küçük veya büyük tüm isteklerimiz burada. İkimiz de her iki listeyi değiştirebiliriz.</p>
+      <div class="wish-grid">
+        <div class="wish-column wish-ahso"><h3>♡ Ahsoş'un istekleri</h3><div class="wish-items" id="wishAhsoList"><p class="wish-muted">Yükleniyor...</p></div></div>
+        <div class="wish-column wish-ahmos"><h3>♡ Ahmoş'un istekleri</h3><div class="wish-items" id="wishAhmosList"><p class="wish-muted">Yükleniyor...</p></div></div>
+      </div>
+      <form class="wish-form" id="wishlistForm">
+        <select class="fun-select" id="wishlistOwner" aria-label="Liste sahibi"><option value="ahso">Ahsoş'un listesine</option><option value="ahmos">Ahmoş'un listesine</option></select>
+        <input id="wishlistName" type="text" maxlength="180" required placeholder="Almak istediğimiz ürünün adı..." aria-label="Ürün adı" />
+        <button type="submit" class="fun-action" id="wishlistSubmit">+ İstek ekle</button>
+      </form>
+      <p class="fun-status" id="wishlistStatus" role="status" aria-live="polite">Firebase hesabın bağlıysa istekleriniz tüm cihazlarda senkronize olur.</p>
+      <button class="simple-back" type="button" id="wishlistBackButton">Ana sayfaya dön</button>
+    </section>
 
     <div class="footer">
       Sadece bize ait bir yer. ♥
@@ -320,6 +2368,7 @@
       <button class="menu-link">Fotoğraf galerisi</button>
       <button class="menu-link">Videolarımız</button>
       <button class="menu-link">Özel günler</button>
+      <button class="menu-link">Şarkılarımız</button>
       <button class="menu-link">İlişki zaman çizelgesi</button>
 
       <div class="group-title">BİRLİKTE</div>
@@ -327,27 +2376,30 @@
       <button class="menu-link">Gezi rehberi</button>
       <button class="menu-link">Gidilecek lokasyonlar</button>
       <button class="menu-link">Birlikte yapılacaklar</button>
+      <button class="menu-link">Hayallerimiz</button>
+
+      <div class="group-title">OYUNLARIMIZ</div>
+      <button class="menu-link">Oyun Bahçesi</button>
+      <button class="menu-link">Wishlist</button>
 
       <div class="group-title">BİZE ÖZEL</div>
+      <button class="menu-link">Soy ağacımız</button>
       <button class="menu-link">Ahmoş'tan notlar</button>
       <button class="menu-link">Ahsoş'tan notlar</button>
       <button class="menu-link">Mektuplarımız</button>
       <button class="menu-link">Bizim sözlüğümüz</button>
 
       <div class="group-title">KEŞİFLER</div>
-      <button class="menu-link">Şarkılarımız</button>
       <button class="menu-link">İlginç bilgiler</button>
       <button class="menu-link">Filmler ve kitaplar</button>
       <button class="menu-link">Bizim haritamız</button>
 
       <div class="group-title">GELECEĞİMİZ</div>
-      <button class="menu-link">Hayallerimiz</button>
       <button class="menu-link">Ortak hedefler</button>
       <button class="menu-link">Gelecekteki bize</button>
 
-      <div class="menu-status">
-        Kategoriler hazır. İçeriklerini güvenli şekilde
-        bağladığımızda burada açılacaklar.
+      <div class="menu-status" id="menuStatus" role="status" aria-live="polite">
+        Fotoğraf galerisi, videolar, oyun bahçemiz, Wishlist, ilişki zaman çizelgesi, özel günler, şarkılarımız, notlar, tarifler, yapılacaklar, lokasyonlar, hayallerimiz ve soy ağacımız açılabilir.
       </div>
     </nav>
   </div>
@@ -435,7 +2487,160 @@
     }
 
     openButton.addEventListener("click", openMenu);
+
     document.getElementById("closeMenu").addEventListener("click", closeMenu);
+
+    // Menüde yalnızca gerçekten mevcut olan bölümlere yönlendir.
+    document.querySelectorAll(".menu-link").forEach((button) => {
+      button.addEventListener("click", () => {
+        const label = button.textContent.trim();
+        const gallery = document.getElementById("encryptedGallery");
+        const heading = document.getElementById("encryptedGalleryHeading");
+        const status = document.getElementById("menuStatus");
+
+
+
+
+
+
+
+
+        if (label === "Oyun Bahçemiz" || label === "Wishlist") {
+          const section = document.getElementById(label === "Oyun Bahçemiz" ? "gamesSection" : "wishlistSection");
+          section.hidden = false;
+          if (label === "Wishlist") document.getElementById("cloudNotesPanel").hidden = false;
+          status.textContent = label + " açıldı. ♥";
+          closeMenu();
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        if (label === "Hayallerimiz") {
+          const section = document.getElementById("dreamsSection");
+          section.hidden = false;
+          document.getElementById("cloudNotesPanel").hidden = false;
+          status.textContent = "Hayallerimiz açıldı. ♥";
+          closeMenu();
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+
+        if (label === "Yemek tarifleri") {
+          const section = document.getElementById("recipesSection");
+          section.hidden = false;
+          document.getElementById("cloudNotesPanel").hidden = false;
+          status.textContent = "Yemek tarifleri açıldı. ♥";
+          closeMenu();
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        if (label === "Gidilecek lokasyonlar") {
+          const section = document.getElementById("locationsSection");
+          section.hidden = false;
+          document.getElementById("cloudNotesPanel").hidden = false;
+          status.textContent = "Gidilecek lokasyonlar açıldı. ♥";
+          closeMenu();
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        if (label === "Birlikte yapılacaklar") {
+          const section = document.getElementById("bucketSection");
+          section.hidden = false;
+          document.getElementById("cloudNotesPanel").hidden = false;
+          status.textContent = "Birlikte yapılacaklar açıldı. ♥";
+          closeMenu();
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+
+        if (label === "Ahsoş'tan notlar") {
+          const section = document.getElementById("ahsosNotesSection");
+          section.hidden = false;
+          status.textContent = "Ahsoş'tan notlar açıldı. ♥";
+          document.getElementById("cloudNotesPanel").hidden = false;
+          closeMenu();
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        if (label === "Ahmoş'tan notlar") {
+          const section = document.getElementById("ahmosNotesSection");
+          section.hidden = false;
+          status.textContent = "Ahmoş'tan notlar açıldı. ♥";
+          document.getElementById("cloudNotesPanel").hidden = false;
+          closeMenu();
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        if (label === "Şarkılarımız") {
+          const section = document.getElementById("songsSection");
+          section.hidden = false;
+          document.getElementById("cloudNotesPanel").hidden = false;
+          status.textContent = "Şarkılarımız açıldı. ♥";
+          closeMenu();
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        if (label === "Özel günler") {
+          const section = document.getElementById("specialDaysSection");
+          section.hidden = false;
+          document.getElementById("cloudNotesPanel").hidden = false;
+          updateAnniversaryCountdown();
+          status.textContent = "Özel günlerimiz açıldı. ♥";
+          closeMenu();
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        if (label === "İlişki zaman çizelgesi") {
+          const timeline = document.getElementById("timelineSection");
+          timeline.hidden = false;
+          document.getElementById("cloudNotesPanel").hidden = false;
+          status.textContent = "İlişki zaman çizelgesi açıldı. ♥";
+          closeMenu();
+          timeline.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        if (label === "Soy ağacımız") {
+          const familyTree = document.getElementById("familyTreeSection");
+          familyTree.hidden = false;
+          status.textContent = "Soy ağacımız açıldı. ♥";
+          closeMenu();
+          familyTree.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        if (label === "Fotoğraf galerisi" || label === "Videolarımız") {
+          if (!gallery) {
+            status.textContent = "Galeri bölümü oluşturulmamış. Önce sayfayı yenile, doğru şifreyle tekrar giriş yap ve medya yükleme mesajını kontrol et.";
+            return;
+          }
+          const wantedType = label === "Fotoğraf galerisi" ? "image" : "video";
+          let shown = 0;
+          [...gallery.children].forEach((card) => {
+            const match = card.dataset.mediaType === wantedType;
+            card.hidden = !match;
+            if (match) shown++;
+          });
+          if (heading) heading.textContent = label;
+          status.textContent = shown
+            ? `${shown} ${wantedType === "image" ? "fotoğraf" : "video"} gösteriliyor.`
+            : `Manifestte görüntülenebilir ${wantedType === "image" ? "fotoğraf" : "video"} bulunamadı.`;
+          closeMenu();
+          (heading || gallery).scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        status.textContent = `"${label}" bölümü henüz hazırlanmadı; şimdilik bu menü öğesi içerik açmıyor.`;
+      });
+    });
 
     overlay.addEventListener("click", function(event) {
       if (event.target === overlay) closeMenu();
@@ -445,9 +2650,1203 @@
       if (event.key === "Escape") closeMenu();
     });
 
-    document.getElementById("loveButton").addEventListener("click", function() {
-      alert("Bu butonu birazdan güvenli e-posta gönderimine bağlayacağız. ♥");
+    // v18: Gerçek e-posta gönderimi Firebase oturumuyla güvenli Apps Script'e
+    // type=module bölümünden bağlanır. Tarayıcıdan alıcı seçilemez.
+    /*
+      PASSWORD-ONLY LOGIN PROTOTYPE.
+      The two encrypted JSON envelopes are embedded below. Never add passwords or raw keys.
+      This is client-side unlock, not server-side authentication. All private media
+      must be encrypted separately before being committed to a public repository.
+    */
+    const KEY_ENVELOPES = {
+  "ahmos": {
+    "format": "MLKEY003",
+    "kdf": "PBKDF2-SHA256",
+    "iterations": 600000,
+    "cipher": "AES-256-GCM",
+    "salt": "d15oxOmuRs/p+M8WoZ+F6A==",
+    "iv": "F1Un3y44Vxwx5YcM",
+    "ciphertext": "ek1HJSBATgLMyiqhcHA74t2lEC8OgbVpC4S7xmAi//UtABidKU9ocvPZjzDavuv1"
+  },
+  "ahso": {
+    "format": "MLKEY003",
+    "kdf": "PBKDF2-SHA256",
+    "iterations": 600000,
+    "cipher": "AES-256-GCM",
+    "salt": "yASZ+Vu3Z3p9xtXjRRN12g==",
+    "iv": "Sd3PFetIFzbA9yei",
+    "ciphertext": "IuaBTn9a2JCMcqRK52dJdcIL2LdlpMlGbHCNz+Hq6GlTetRy+cXQKOq+lapIK5D1"
+  }
+};
+    const keyMagic = new TextEncoder().encode("MLKEY003");
+    let contentCryptoKey = null;
+    function fromB64(s){const bin=atob(s);const out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return out;}
+    async function openEnvelope(envelope,password){
+      if(!envelope||envelope.format!=="MLKEY003"||envelope.iterations!==600000)throw new Error("Bu kullanıcı için şifreli anahtar henüz siteye tanıtılmadı.");
+      const salt=fromB64(envelope.salt),iv=fromB64(envelope.iv),ct=fromB64(envelope.ciphertext);
+      const material=await crypto.subtle.importKey("raw",new TextEncoder().encode(password),"PBKDF2",false,["deriveKey"]);
+      const wrapping=await crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:600000,hash:"SHA-256"},material,{name:"AES-GCM",length:256},false,["decrypt"]);
+      const raw=await crypto.subtle.decrypt({name:"AES-GCM",iv,additionalData:keyMagic,tagLength:128},wrapping,ct);
+      if(raw.byteLength!==32)throw new Error("Anahtar biçimi geçersiz.");
+      return crypto.subtle.importKey("raw",raw,{name:"AES-GCM"},false,["encrypt","decrypt"]);
+    }
+
+    document.getElementById("familyBackButton").addEventListener("click", () => {
+      const familyTree = document.getElementById("familyTreeSection");
+      familyTree.hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+
+    document.getElementById("timelineBackButton").addEventListener("click", () => {
+      const timeline = document.getElementById("timelineSection");
+      timeline.hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+
+    function updateAnniversaryCountdown() {
+      const countdownEl = document.getElementById("anniversaryCountdown");
+      const countdownTextEl = document.getElementById("anniversaryCountdownText");
+      const yearTextEl = document.getElementById("anniversaryYearText");
+      if (!countdownEl || !countdownTextEl || !yearTextEl) return;
+
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      let next = new Date(now.getFullYear(), 11, 12);
+
+      if (today > next) {
+        next = new Date(now.getFullYear() + 1, 11, 12);
+      }
+
+      const diffMs = next - today;
+      const days = Math.round(diffMs / 86400000);
+      const anniversaryNumber = next.getFullYear() - 2025;
+
+      if (days === 0) {
+        countdownEl.textContent = "Bugün";
+        countdownTextEl.textContent = "♥";
+        yearTextEl.textContent = `${anniversaryNumber}. yıldönümümüz kutlu olsun. ♥`;
+      } else {
+        countdownEl.textContent = String(days);
+        countdownTextEl.textContent = "gün kaldı";
+        yearTextEl.textContent = `${anniversaryNumber}. yıldönümümüze doğru gidiyoruz.`;
+      }
+    }
+
+    document.getElementById("specialDaysBackButton").addEventListener("click", () => {
+      const section = document.getElementById("specialDaysSection");
+      section.hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+
+    document.getElementById("songsBackButton").addEventListener("click", () => {
+      const section = document.getElementById("songsSection");
+      section.hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+
+    document.getElementById("ahmosNotesBackButton").addEventListener("click", () => {
+      const section = document.getElementById("ahmosNotesSection");
+      section.hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+
+    document.getElementById("dreamsBackButton").addEventListener("click", () => {
+      document.getElementById("dreamsSection").hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+
+    document.getElementById("ahsosNotesBackButton").addEventListener("click", () => {
+      document.getElementById("ahsosNotesSection").hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+
+    document.getElementById("bucketBackButton").addEventListener("click", () => {
+      document.getElementById("bucketSection").hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.getElementById("recipesBackButton").addEventListener("click", () => {
+      document.getElementById("recipesSection").hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.getElementById("locationsBackButton").addEventListener("click", () => {
+      document.getElementById("locationsSection").hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    const MEDIA_MAGIC = new TextEncoder().encode("MLMED001");
+    let slideshowImages = [];
+    let slideshowIndex = 0;
+    let slideshowTimer = null;
+
+    function showHeroImage(index) {
+      if (!slideshowImages.length) return;
+      slideshowIndex = ((index % slideshowImages.length) + slideshowImages.length) % slideshowImages.length;
+      const frame = document.getElementById("memoryArt");
+      let hero = frame.querySelector("img.decrypted-media");
+      if (!hero) {
+        hero = document.createElement("img");
+        hero.className = "decrypted-media";
+        hero.alt = "Bizim hikâyemizden bir fotoğraf";
+        frame.replaceChildren(hero);
+        frame.classList.add("has-media");
+      }
+      hero.src = slideshowImages[slideshowIndex].url;
+      const caption = document.getElementById("memoryCaption");
+      caption.textContent = `${slideshowIndex + 1} / ${slideshowImages.length} fotoğraf · ♥`;
+    }
+
+    function startHeroSlideshow() {
+      if (slideshowTimer) clearInterval(slideshowTimer);
+      if (slideshowImages.length > 1) {
+        slideshowTimer = setInterval(() => showHeroImage(slideshowIndex + 1), 4000);
+      }
+    }
+
+    async function loadEncryptedMemories(){
+      const frame=document.getElementById("memoryArt");
+      const caption=document.getElementById("memoryCaption");
+      try{
+        const manifestResponse=await fetch("media/media-manifest.json",{cache:"no-store"});
+        if(!manifestResponse.ok)throw new Error("Manifest dosyası bulunamadı.");
+        const manifest=await manifestResponse.json();
+        if(manifest.format!=="MLMEDIA-MANIFEST-001"||manifest.encryption!=="AES-256-GCM")throw new Error("Manifest biçimi desteklenmiyor.");
+
+        const items=(manifest.items||[]).filter(item =>
+          item && item.encrypted===true &&
+          typeof item.file==="string" &&
+          !item.file.includes("/") && !item.file.includes("\\")
+        );
+        if(!items.length){
+          caption.textContent="Henüz görüntülenebilir şifreli anı bulunamadı.";
+          return;
+        }
+
+        // Create the gallery once; future additions only require new encrypted files + manifest entries.
+        let heading=document.getElementById("encryptedGalleryHeading");
+        let gallery=document.getElementById("encryptedGallery");
+        if(!gallery){
+          heading=document.createElement("h2");
+          heading.id="encryptedGalleryHeading";
+          heading.className="gallery-heading";
+          heading.textContent="Anılarımız";
+          gallery=document.createElement("section");
+          gallery.id="encryptedGallery";
+          gallery.className="encrypted-gallery";
+          gallery.setAttribute("aria-label","Şifreli anı galerisi");
+          gallery.setAttribute("tabindex","-1");
+          const frameContainer=document.querySelector(".memory-frame");
+          frameContainer.insertAdjacentElement("afterend",heading);
+          heading.insertAdjacentElement("afterend",gallery);
+        }
+
+        let loaded=0;
+        for(const item of items){
+          try{
+            const response=await fetch("media/"+encodeURIComponent(item.file),{cache:"no-store"});
+            if(!response.ok)continue;
+            const bytes=new Uint8Array(await response.arrayBuffer());
+            if(bytes.length<36||!bytes.slice(0,8).every((v,i)=>v===MEDIA_MAGIC[i]))continue;
+            const iv=bytes.slice(8,20),ciphertext=bytes.slice(20);
+            const plaintext=await crypto.subtle.decrypt(
+              {name:"AES-GCM",iv,additionalData:MEDIA_MAGIC,tagLength:128},
+              contentCryptoKey,ciphertext
+            );
+            const mime=typeof item.mime==="string"?item.mime:"application/octet-stream";
+            if(!mime.startsWith("image/")&&!mime.startsWith("video/"))continue;
+            const blob=new Blob([plaintext],{type:mime});
+            const url=URL.createObjectURL(blob);
+            if(mime.startsWith("image/")) slideshowImages.push({url, file:item.file});
+            const card=document.createElement("figure");
+            card.className="gallery-item"; card.dataset.mediaType=mime.startsWith("image/")?"image":"video";
+            let el;
+            if(mime.startsWith("image/")){
+              el=document.createElement("img");
+              el.alt="Şifre çözülen anı fotoğrafı";
+              el.loading="lazy";
+            }else{
+              el=document.createElement("video");
+              el.controls=true;
+              el.playsInline=true;
+              el.preload="metadata";
+            }
+            el.src=url;
+            card.appendChild(el);
+            const label=document.createElement("figcaption");
+            label.textContent="♥♥♥♥♥♥";
+            card.appendChild(label);
+            gallery.appendChild(card);
+
+            loaded++;
+          }catch(itemError){
+            console.warn("A media item could not be decrypted:",item.file,itemError);
+          }
+        }
+        if (slideshowImages.length) {
+          showHeroImage(0);
+          startHeroSlideshow();
+        }
+        caption.textContent=loaded
+          ? `${loaded} şifreli anı yüklendi. Ana fotoğraf 4 saniyede bir değişir; tüm anılar aşağıdaki galeridedir. ♥`
+          : "Anılar yüklenemedi. Medya dosyalarını ve manifesti kontrol edin.";
+      }catch(err){
+        caption.textContent="Şifreli anılar yüklenemedi. Medya dosyalarının media/ klasöründe olduğundan emin olun.";
+        console.error("Encrypted media load failed:",err);
+      }
+    }
+    document.getElementById("loginBtn").addEventListener("click",async()=>{
+      const btn=document.getElementById("loginBtn"),status=document.getElementById("loginStatus");
+      const user=document.getElementById("loginUser").value,pass=document.getElementById("loginPass").value;
+      if(!pass){status.textContent="Şifreni gir.";return;}
+      btn.disabled=true;btn.textContent="Kontrol ediliyor…";status.className="auth-status";
+      try{
+        contentCryptoKey=await openEnvelope(KEY_ENVELOPES[user],pass);
+        document.getElementById("loginPass").value = "";
+        document.body.classList.remove("locked");document.getElementById("authScreen").remove();
+        // Kimlik yalnızca yerel anahtar başarıyla açıldıktan sonra bildirilir.
+        window.__siteUnlockedRole = user;
+        window.dispatchEvent(new CustomEvent("site-unlocked", {detail: {role: user}}));
+        await loadEncryptedMemories();
+      }catch(e){status.className="auth-status error";status.textContent="Giriş başarısız: "+e.message;}
+      finally{btn.disabled=false;btn.textContent="Giriş yap";}
+    });
+
+  </script>
+
+  <script>
+/* Oyun Bahçemiz - UI only. No secrets, no third-party scripts. */
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const SURPRISE_TYPES = ['Kazı kazan','Rastgele anı','Aşk görevi','Günün şarkısı'];
+  const palette = ['#f4a9c1','#edd0a4','#d1bde9','#b9d6ce'];
+  const rewards = [
+    'Bir sonraki buluşmada tatlılar benden ♥','Bir uzun sarılma kuponu ♥',
+    'Bugün film seçme hakkı senin!','Bir sonraki kahveyi ben ısmarlıyorum.',
+    '10 dakikalık sımsıkı sarılma hakkı ♥','Bir sonraki date için sürpriz plan hakkı!',
+    'Birlikte fotoğraf çekme görevi kazandın.','Birbirimize güzel bir not bırakma hakkı ♥'
+  ];
+  const challenges = [
+    'Birbirinize ilişkinizdeki en komik anıyı anlatın.',
+    'Şimdi birbirinize 30 saniyelik tatlı bir ses kaydı gönderin.',
+    'Bir sonraki buluşmanız için yepyeni bir aktivite seçin.',
+    'Birbiriniz hakkında sevdiğiniz üç küçük şeyi söyleyin.',
+    'Telefonunuzdan en sevdiğiniz ortak fotoğrafı bulun.',
+    'Birbirinize sürpriz bir şarkı seçin.',
+    'Hayallerimiz sekmesine gerçekleştirmek istediğiniz bir şey ekleyin.',
+    'İlk tanıştığınız günü beş cümleyle anlatın.',
+    'Bir sonraki buluşmada birlikte tatlı yapmaya söz verin.',
+    'Gelecekteki kendinize küçük bir not yazın.',
+    'İkinizin de çok sevdiği bir filmi yeniden izleyin.',
+    'Bugün birbirinize teşekkür etmek istediğiniz bir şeyi söyleyin.'
+  ];
+  const last = (key) => { try { return JSON.parse(sessionStorage.getItem(key)||'[]'); } catch {return [];} };
+  const store = (key,list) => {try{sessionStorage.setItem(key,JSON.stringify(list.slice(-5)));}catch{}};
+  function pickAvoid(list,key) {
+    if(!list.length)return null;
+    const before=last(key);const possible=list.filter(x=>!before.includes(x));
+    const pool=possible.length?possible:list;
+    const value=pool[Math.floor(Math.random()*pool.length)];
+    store(key,[...before,value]);return value;
+  }
+  function node(tag,cls,content){const x=document.createElement(tag);if(cls)x.className=cls;if(content!=null)x.textContent=content;return x;}
+  function result(root,label,title,content){
+    root.replaceChildren();root.append(node('div','fun-label',label),node('h4','',title));
+    if(content)root.append(node('p','',content));
+    return root;
+  }
+  const surpriseRoot=$('surpriseResult');
+  const surpriseStatus=$('surpriseStatus');
+  function showSurprise(kind){
+    if(kind===0){
+      const prize=pickAvoid(rewards,'bh-rewards');
+      result(surpriseRoot,'Kazı kazan','Bu ödül sana çıktı ♥','Parmağınla veya farenle gri kaplamayı kazı!');
+      const wrap=node('div','scratch-wrap');
+      const text=node('div','scratch-prize',prize);wrap.append(text);
+      const canvas=document.createElement('canvas');canvas.width=620;canvas.height=260;
+      canvas.setAttribute('aria-label','Kazı kazan kaplaması');wrap.append(canvas);surpriseRoot.append(wrap);
+      const c=canvas.getContext('2d');
+      const gradient=c.createLinearGradient(0,0,620,260);
+      gradient.addColorStop(0,'#bcb1c2');gradient.addColorStop(1,'#dbc4d8');
+      c.fillStyle=gradient;c.fillRect(0,0,620,260);
+      c.fillStyle='#fff';c.font='bold 32px sans-serif';c.textAlign='center';c.fillText('♥  BURAYI KAZI  ♥',310,138);
+      c.globalCompositeOperation='destination-out';
+      let drawing=false;let previous=null;let complete=false;
+      const covered=new Set();
+      function point(ev){const r=canvas.getBoundingClientRect();return {x:(ev.clientX-r.left)*620/r.width,y:(ev.clientY-r.top)*260/r.height};}
+      function scratch(ev){if(!drawing||complete)return;const p=point(ev);
+        c.beginPath();c.lineWidth=55;c.lineCap='round';c.lineJoin='round';
+        c.moveTo(previous?.x??p.x,previous?.y??p.y);c.lineTo(p.x,p.y);c.stroke();
+        const steps=Math.ceil(Math.hypot(p.x-(previous?.x??p.x),p.y-(previous?.y??p.y))/10);
+        for(let j=0;j<=steps;j++){
+          const x=(previous?.x??p.x)+(p.x-(previous?.x??p.x))*j/Math.max(1,steps);
+          const y=(previous?.y??p.y)+(p.y-(previous?.y??p.y))*j/Math.max(1,steps);
+          for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){
+            if(dx*dx+dy*dy>6.25)continue;
+            const gx=Math.floor(x/20)+dx,gy=Math.floor(y/20)+dy;
+            if(gx>=0&&gx<31&&gy>=0&&gy<13)covered.add(gx+31*gy);
+          }
+        }
+        previous=p;
+        if(covered.size>=145){complete=true;canvas.style.opacity='0';canvas.style.transition='opacity .55s';canvas.style.pointerEvents='none';surpriseStatus.textContent='Ödülünü kazandın! ♥';}
+      }
+      canvas.addEventListener('pointerdown',ev=>{drawing=true;previous=null;canvas.setPointerCapture(ev.pointerId);scratch(ev);});
+      canvas.addEventListener('pointermove',scratch);
+      canvas.addEventListener('pointerup',()=>{drawing=false;previous=null;});
+      canvas.addEventListener('pointercancel',()=>{drawing=false;previous=null;});
+      surpriseStatus.textContent='Kazanmak için kartın bir kısmını kazı.';
+    }else if(kind===1){
+      const imgs=[...document.querySelectorAll('#encryptedGallery .gallery-item[data-media-type="image"] img')];
+      const choices=imgs.map((_,i)=>i);
+      const i=pickAvoid(choices,'bh-photos');
+      if(i==null){result(surpriseRoot,'Rastgele anı','Galeride anı bulunamadı','Şifreli fotoğraflar yüklenince burada rastgele bir fotoğraf göreceksiniz.');return;}
+      result(surpriseRoot,'Rastgele anı','Bizim bir anımız ♥');
+      const holder=node('div','fun-surprise-visual');const pic=document.createElement('img');
+      pic.src=imgs[i].src;pic.alt='Şifreli galerimizden seçilen bir anı';pic.loading='lazy';holder.append(pic);surpriseRoot.append(holder);
+      surpriseStatus.textContent='Fotoğraf, yalnızca girişte açtığınız şifreli galeriden gösteriliyor.';
+    }else if(kind===2){
+      const challenge=pickAvoid(challenges,'bh-challenges');
+      result(surpriseRoot,'Aşk görevi','Mini görevimiz ♥',challenge);
+      surpriseStatus.textContent='Görevi tamamlayınca birbirinize haber verin!';
+    }else if(kind===3){
+      const songs=[...document.querySelectorAll('[data-shared-list="songs"] .song-card')].map(card=>({
+        name:card.querySelector('.song-name')?.textContent?.trim()||'',
+        artist:card.querySelector('.song-artist')?.textContent?.trim()||'',
+        url:card.querySelector('a.song-link')?.href||''
+      })).filter(x=>x.name);
+      // Aynı gün ve aynı şarkı havuzu için iki kullanıcıda da aynı sonuç.
+      songs.sort((a,b)=>a.name.localeCompare(b.name,'tr'));
+      const now=new Date();
+      const dayKey=`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
+      let dayHash=2166136261;
+      for(const ch of dayKey){dayHash^=ch.charCodeAt(0);dayHash=Math.imul(dayHash,16777619);}
+      const song=songs.length?(dayHash>>>0)%songs.length:null;
+      if(song==null){result(surpriseRoot,'Günün şarkısı','Henüz şarkı yok','Firebase Şarkılarımız bölümüne bir şarkı eklediğinizde sürpriz olarak çıkacak.');return;}
+      const item=songs[song];result(surpriseRoot,'Günün şarkısı',item.name,item.artist);
+      if(item.url && /^https?:\/\//i.test(item.url)){
+        const a=node('a','','Şarkıyı dinle ↗');a.href=item.url;a.target='_blank';a.rel='noopener noreferrer';surpriseRoot.append(a);
+      }
+      surpriseStatus.textContent='Bugünün şarkısı Şarkılarımız listesinden seçildi; yarın yenilenecek. ♥';
+    }
+  }
+  const history=last('bh-surprises');
+  function nextSurprise(){
+    const choices=[0,1,2,3].filter(i=>!history.slice(-3).includes(i));
+    const choice=choices[Math.floor(Math.random()*choices.length)]??Math.floor(Math.random()*4);
+    history.push(choice);if(history.length>5)history.shift();store('bh-surprises',history);
+    showSurprise(choice);return choice;
+  }
+  $('surpriseButton').addEventListener('click',()=>nextSurprise());
+
+  // SVG-like canvas sectors, deterministic landing in one of 4 sectors.
+  const wheel=$('loveWheelCanvas'),ctx=wheel.getContext('2d');
+  const center=300,R=281,step=Math.PI/2;
+  let rotation=0,spinning=false,dragging=false,dragLast=0,dragTravel=0,raf=0;
+  let audio=null,lastTick=-1;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function drawWheel(){
+    ctx.clearRect(0,0,600,600);
+    for(let i=0;i<4;i++){
+      const start=rotation-Math.PI/2+i*step;
+      ctx.beginPath();ctx.moveTo(center,center);ctx.arc(center,center,R,start,start+step);
+      ctx.closePath();ctx.fillStyle=palette[i];ctx.fill();ctx.strokeStyle='#fffaf7';ctx.lineWidth=8;ctx.stroke();
+      ctx.save();ctx.translate(center,center);ctx.rotate(start+step/2);ctx.textAlign='center';ctx.fillStyle='#6e3b52';
+      ctx.font='bold 25px sans-serif';const t=SURPRISE_TYPES[i];
+      if(t==='Rastgele anı'){ctx.fillText('Rastgele',182,-6);ctx.fillText('anı',182,24);}
+      else if(t==='Günün şarkısı'){ctx.fillText('Günün',182,-6);ctx.fillText('şarkısı',182,24);}
+      else ctx.fillText(t,173,8);
+      ctx.restore();
+    }
+    ctx.beginPath();ctx.arc(center,center,39,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();ctx.fillStyle='#a04469';ctx.font='43px sans-serif';ctx.textAlign='center';ctx.fillText('♥',center,center+15);
+  }
+  function tick(){
+    if(!audio)return;
+    try{const osc=audio.createOscillator(),g=audio.createGain(),t=audio.currentTime;
+      osc.type='sine';osc.frequency.setValueAtTime(680,t);osc.frequency.exponentialRampToValueAtTime(460,t+0.022);
+      g.gain.setValueAtTime(.024,t);g.gain.exponentialRampToValueAtTime(.001,t+.033);
+      osc.connect(g).connect(audio.destination);osc.start(t);osc.stop(t+.037);
+    }catch(_){/* Audio unsupported */}
+  }
+  function setRotation(value,sound=true){
+    rotation=value;drawWheel();
+    const slot=Math.floor(rotation/step);
+    if(sound&&slot!==lastTick){lastTick=slot;tick();}
+  }
+  function prepareAudio(){
+    try{const AC=window.AudioContext||window.webkitAudioContext;
+      if(AC&&!audio)audio=new AC(); if(audio?.state==='suspended')audio.resume().catch(()=>{});
+    }catch(_){audio=null;}
+  }
+  function confetti(){
+    if(reduced)return;
+    const c=$('wheelConfetti'),g=c.getContext('2d');
+    const pieces=Array.from({length:72},()=>({x:360,y:290,vx:(Math.random()-.5)*13,vy:-4-Math.random()*10,w:3+Math.random()*5,life:1,clr:palette[Math.floor(Math.random()*palette.length)]}));
+    let frame=0;
+    function render(){g.clearRect(0,0,c.width,c.height);for(const p of pieces){p.x+=p.vx;p.y+=p.vy;p.vy+=.26;p.life-=.012;g.globalAlpha=Math.max(0,p.life);g.fillStyle=p.clr;g.fillRect(p.x,p.y,p.w,p.w*1.8);}g.globalAlpha=1;
+      if(++frame<92)requestAnimationFrame(render);else g.clearRect(0,0,c.width,c.height);
+    }render();
+  }
+  function spin(fling=0){
+    if(spinning)return;prepareAudio();spinning=true;$('spinWheelButton').disabled=true;
+    const choices=[0,1,2,3].filter(i=>!history.slice(-2).includes(i));
+    const chosen=choices[Math.floor(Math.random()*choices.length)]??0;
+    const target=((-(chosen+.5)*step)%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
+    const now=((rotation%(2*Math.PI))+2*Math.PI)%(2*Math.PI);
+    const direction=fling<-.35?-1:1;
+    const extra=(reduced?1:5+Math.min(4,Math.floor(Math.abs(fling)*2)))*2*Math.PI;
+    const delta=direction===1?extra+((target-now+2*Math.PI)%(2*Math.PI)):
+       -extra-((now-target+2*Math.PI)%(2*Math.PI));
+    const initial=rotation,duration=reduced?320:3700,start=performance.now();
+    $('wheelStatus').textContent='Çark dönüyor...';
+    function frame(t){const f=Math.min(1,(t-start)/duration),ease=1-Math.pow(1-f,4);
+      setRotation(initial+delta*ease,!reduced);if(f<1){raf=requestAnimationFrame(frame);}else{
+        spinning=false;$('spinWheelButton').disabled=false;
+        $('wheelStatus').textContent='♥ '+SURPRISE_TYPES[chosen]+' çıktı! Aşağıdaki sürpriz kutusunda açıldı.';
+        history.push(chosen);if(history.length>5)history.shift();store('bh-surprises',history);
+        showSurprise(chosen);confetti();
+        $('surpriseResult').scrollIntoView({behavior:reduced?'auto':'smooth',block:'nearest'});
+      }}raf=requestAnimationFrame(frame);
+  }
+  function pointerAngle(ev){const r=wheel.getBoundingClientRect();return Math.atan2(ev.clientY-(r.top+r.height/2),ev.clientX-(r.left+r.width/2));}
+  wheel.addEventListener('pointerdown',ev=>{if(spinning)return;prepareAudio();dragging=true;dragTravel=0;dragLast=pointerAngle(ev);wheel.setPointerCapture(ev.pointerId);});
+  wheel.addEventListener('pointermove',ev=>{if(!dragging||spinning)return;const p=pointerAngle(ev);let d=p-dragLast;
+    if(d>Math.PI)d-=2*Math.PI;if(d< -Math.PI)d+=2*Math.PI;dragTravel+=d;dragLast=p;setRotation(rotation+d,false);
+  });
+  wheel.addEventListener('pointerup',()=>{if(!dragging)return;dragging=false;spin(dragTravel);});
+  wheel.addEventListener('pointercancel',()=>{dragging=false;});
+  $('spinWheelButton').addEventListener('click',()=>spin());
+  drawWheel();
+
+  // Date ideas are intentionally generic activities, not claims about opening hours or bookability.
+  // district | activity | category | indicative budget tier
+  const RAW = `Kadıköy|Moda'da bira içip sahilde yürüyüş|Yeme & İçme|₺₺
+Kadıköy|Yeldeğirmeni'nde kahve ve sokak sanatı turu|Keşif|₺
+Kadıköy|Caddebostan'da gün batımı pikniği|Romantik|₺
+Kadıköy|Moda'da tatlıcı keşfi|Yeme & İçme|₺₺
+Kadıköy|Bağdat Caddesi'nde şık akşam yemeği|Romantik|₺₺₺
+Kadıköy|Kadıköy Çarşı'da meyhane akşamı|Yeme & İçme|₺₺₺
+Kadıköy|Antikacı ve plakçı gezisi|Keşif|₺
+Kadıköy|Seramik veya mum yapımı atölyesi|Eğlence|₺₺
+Kadıköy|Kutu oyunu kafesinde rekabet|Eğlence|₺₺
+Kadıköy|Fenerbahçe Parkı'nda yürüyüş ve kahve|Romantik|₺
+Üsküdar|Çengelköy'de Boğaz manzaralı akşam yemeği|Romantik|₺₺₺
+Üsküdar|Kuzguncuk'ta kahvaltı ve sokak gezisi|Keşif|₺₺
+Üsküdar|Salacak'ta Kız Kulesi manzarasında çay|Romantik|₺
+Üsküdar|Çamlıca'da gün batımı seyri|Romantik|₺
+Üsküdar|Beylerbeyi'nde balık ve sahil yürüyüşü|Yeme & İçme|₺₺₺
+Üsküdar|Çengelköy'de börek ve çay|Yeme & İçme|₺
+Üsküdar|Kuzguncuk'ta fotoğraf çekme yarışması|Eğlence|Ücretsiz
+Üsküdar|Kandilli'de sakin Boğaz yürüyüşü|Romantik|Ücretsiz
+Beşiktaş|Akaretler'de fancy date ve kokteyl|Romantik|₺₺₺
+Beşiktaş|Ortaköy'de kumpir ve sahil gezisi|Yeme & İçme|₺
+Beşiktaş|Bebek'te kahve ve uzun yürüyüş|Romantik|₺₺
+Beşiktaş|Arnavutköy'de romantik akşam yemeği|Romantik|₺₺₺
+Beşiktaş|Etiler'de şık restoran denemesi|Yeme & İçme|₺₺₺
+Beşiktaş|Ortaköy'de waffle yiyip fotoğraf çekilme|Yeme & İçme|₺₺
+Beşiktaş|Yıldız Parkı'nda yürüyüş|Doğa|Ücretsiz
+Beşiktaş|Çarşıda sokak lezzetleri turu|Yeme & İçme|₺
+Beşiktaş|Bebek'te gün doğumu kahvaltısı|Romantik|₺₺
+Beyoğlu|Karaköy'de kokteyl gecesi|Yeme & İçme|₺₺₺
+Beyoğlu|Galata çevresinde romantik sokak turu|Romantik|Ücretsiz
+Beyoğlu|Cihangir'de brunch|Yeme & İçme|₺₺
+Beyoğlu|İstiklal'de sahaf ve kitapçı gezisi|Keşif|₺
+Beyoğlu|Karaköy'de sanat galerisi turu|Kültür|₺
+Beyoğlu|Asmalımescit'te meyhane gecesi|Yeme & İçme|₺₺₺
+Beyoğlu|Galataport'ta sahil yürüyüşü ve tatlı|Romantik|₺₺
+Beyoğlu|Çukurcuma'da antikacı keşfi|Keşif|₺
+Beyoğlu|Pera'da özel bir fine dining akşamı|Romantik|₺₺₺
+Şişli|Nişantaşı'nda fancy date|Romantik|₺₺₺
+Şişli|Teşvikiye'de butik kahveci keşfi|Yeme & İçme|₺₺
+Şişli|Bomonti'de canlı müzik ve yemek|Eğlence|₺₺₺
+Şişli|Maçka Parkı'nda yürüyüş ve kahve|Doğa|₺
+Sarıyer|Emirgan Korusu'nda romantik yürüyüş|Doğa|Ücretsiz
+Sarıyer|Rumelihisarı'nda Boğaz manzaralı kahvaltı|Romantik|₺₺
+Sarıyer|Tarabya'da balık akşamı|Yeme & İçme|₺₺₺
+Sarıyer|İstinye'de sahil kahvesi|Romantik|₺₺
+Sarıyer|Belgrad Ormanı'nda doğa yürüyüşü|Doğa|₺
+Sarıyer|Rumeli Kavağı'nda deniz ürünleri|Yeme & İçme|₺₺
+Sarıyer|Kilyos'ta deniz kenarında bir gün|Doğa|₺₺
+Fatih|Balat'ta renkli sokaklar ve fotoğraf turu|Keşif|Ücretsiz
+Fatih|Süleymaniye'de manzaralı çay molası|Romantik|₺
+Fatih|Eminönü'nde balık ekmek ve vapur gezisi|Yeme & İçme|₺
+Fatih|Kapalıçarşı'da birbirinize küçük hediye seçme|Eğlence|₺₺
+Fatih|Sultanahmet'te tarihi yarımada keşfi|Kültür|₺
+Eyüpsultan|Pierre Loti'de Haliç manzarası ve kahve|Romantik|₺
+Eyüpsultan|Göktürk'te doğa yürüyüşü ve kahvaltı|Doğa|₺₺
+Adalar|Büyükada'da bisiklet veya yürüyüş günü|Doğa|₺₺
+Adalar|Heybeliada'da piknik ve sahil gezisi|Romantik|₺
+Adalar|Burgazada'da sakin bir kahve günü|Romantik|₺
+Maltepe|Sahil parkında bisiklet turu|Doğa|₺
+Kartal|Dragos'ta deniz manzaralı akşam yemeği|Romantik|₺₺₺
+Beykoz|Anadolu Kavağı'nda balık ve sahil gezisi|Yeme & İçme|₺₺
+Beykoz|Polonezköy'de kahvaltı ve doğa yürüyüşü|Doğa|₺₺
+Beykoz|Kanlıca'da yoğurt yiyip Boğaz'ı seyretme|Yeme & İçme|₺
+Bakırköy|Florya sahilinde gün batımı yürüyüşü|Romantik|Ücretsiz
+Bakırköy|Ataköy Marina'da akşam yemeği|Romantik|₺₺₺
+Ataşehir|Şık bir restoranda yeni mutfak denemesi|Yeme & İçme|₺₺₺
+Şile|Ağva'da nehir kenarında kahvaltı|Doğa|₺₺
+Şile|Sahilde uzun yürüyüş ve deniz manzarası|Doğa|₺
+Genel|Tiyatroya gitmek ve çıkışta oyunu değerlendirmek|Kültür|₺₺
+Genel|Sinemada rastgele bir film seçmek|Kültür|₺₺
+Genel|Stand-up gösterisine gitmek|Eğlence|₺₺`;
+  const ideas=RAW.split('\n').filter(Boolean).map((line,i)=>{const [district,title,category,budget]=line.split('|');return {id:i,district,title,category,budget};});
+  const asian=new Set(['Kadıköy','Üsküdar','Adalar','Maltepe','Kartal','Beykoz','Ataşehir','Şile']);
+  const side=$('dateSide'),cat=$('dateCategory'),dateResult=$('dateResult'),dateStatus=$('dateStatus');
+  const rollBtn=$('dateRollButton'),acceptBtn=$('dateAcceptButton'),addBtn=$('dateAddTodoButton');
+  let selected=null,rolling=false;
+  function eligible(){return ideas.filter(x=>(cat.value==='all'||x.category===cat.value)&&
+    (side.value==='all'||x.district==='Genel'||(side.value==='anatolia'?asian.has(x.district):!asian.has(x.district))));}
+  function updateFilter(){selected=null;acceptBtn.hidden=true;addBtn.hidden=true;
+    const items=eligible();$('dateCount').textContent=`${items.length} buluşma fikri`;
+    result(dateResult,'İstanbul','Bugün ne yapsak?','Bir buluşma seçelim.');dateStatus.textContent='';rollBtn.disabled=items.length===0;
+  }
+  function showIdea(x){result(dateResult,x.district==='Genel'?'İstanbul genelinde':x.district,x.title,`${x.category} · ${x.budget} (yaklaşık bütçe kategorisi)`);}
+  function rollIdea(){if(rolling)return;const filtered=eligible();if(!filtered.length)return;
+    const hist=last('bh-dates');const allowed=filtered.filter(x=>!hist.includes(x.id));
+    const pool=allowed.length?allowed:filtered;selected=pool[Math.floor(Math.random()*pool.length)];
+    store('bh-dates',[...hist,selected.id]);rolling=true;rollBtn.disabled=true;acceptBtn.hidden=true;addBtn.hidden=true;
+    dateStatus.textContent='Şansımız karar veriyor...';
+    const count=reduced?0:13;let frame=0;
+    const animation=()=>{
+      if(frame++<count){showIdea(filtered[Math.floor(Math.random()*filtered.length)]);setTimeout(animation,55+frame*13);}
+      else{showIdea(selected);rolling=false;rollBtn.disabled=false;rollBtn.textContent='↻ Başka plan seç';acceptBtn.hidden=false;addBtn.hidden=false;
+        dateStatus.textContent='Hoşunuza gittiyse kabul edin veya yapılacaklarınıza ekleyin. ♥';}
+    };animation();
+  }
+  side.addEventListener('change',updateFilter);cat.addEventListener('change',updateFilter);
+  rollBtn.addEventListener('click',rollIdea);updateFilter();
+  acceptBtn.addEventListener('click',()=>{if(!selected)return;dateStatus.textContent='♥ Bu buluşmayı seçtiniz! Şimdiden iyi eğlenceler.';});
+  addBtn.addEventListener('click',async()=>{
+    if(!selected)return;
+    if(typeof window.__loveGameAddTodo!=='function'){
+      dateStatus.textContent='Önce Firebase bağlantısının yüklenmesini bekle.';return;
+    }
+    addBtn.disabled=true;dateStatus.textContent='Yapılacaklar listesine ekleniyor...';
+    try{await window.__loveGameAddTodo(`${selected.district==='Genel'?'İstanbul':selected.district}: ${selected.title}`);
+      dateStatus.textContent='♥ Birlikte yapılacaklara eklendi!';
+    }catch(err){dateStatus.textContent='Eklenemedi: '+(err.message||String(err));}
+    finally{addBtn.disabled=false;}
+  });
+  for(const id of ['gamesBackButton','wishlistBackButton']){
+    $(id)?.addEventListener('click',()=>{window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});});
+  }
+})();
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+    import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, serverTimestamp, writeBatch } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCuY6fpOXhSmd2R_9eCTL_ZVqMNFVYPle0",
+      authDomain: "our-story-dca75.firebaseapp.com",
+      projectId: "our-story-dca75",
+      storageBucket: "our-story-dca75.firebasestorage.app",
+      messagingSenderId: "444916331374",
+      appId: "1:444916331374:web:0213e7b38fc4bb00a0477f",
+      measurementId: "G-6N5CC54ZTT"
+    };
+    // Firebase UID'leri HTML'ye elle yazılmaz. İlk kullanımda her kullanıcı,
+    // site şifresiyle açtığı role kendi Firebase hesabını bir kez bağlar.
+    // Tarayıcı yalnızca UID eşleşmelerini tutar; şifreler asla kaydedilmez.
+    const BINDING_STORAGE_KEY = "bizim-hikayemiz-auth-binding-v16";
+    const ROLES = ["ahmos", "ahso"];
+    const roleLabel = (role) => role === "ahmos" ? "Ahmoş" : "Ahsoş";
+    function readBindings() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(BINDING_STORAGE_KEY) || "{}");
+        const result = { ahmos: null, ahso: null };
+        for (const role of ROLES) {
+          if (typeof parsed[role] === "string" && parsed[role].length > 10) result[role] = parsed[role];
+        }
+        return result;
+      } catch (_) { return { ahmos: null, ahso: null }; }
+    }
+    let boundUids = readBindings();
+    function getRole(uid) {
+      return ROLES.find(role => boundUids[role] === uid) || null;
+    }
+    function saveBindings() {
+      localStorage.setItem(BINDING_STORAGE_KEY, JSON.stringify(boundUids));
+    }
+    function canBind(user) {
+      return !!siteRole && !!user && !boundUids[siteRole]
+        && (!getRole(user.uid) || getRole(user.uid) === siteRole);
+    }
+    function bindAccountToSiteRole(user) {
+      if (!siteRole || !user) throw new Error("Önce site şifreni gir.");
+      const otherRole = siteRole === "ahmos" ? "ahso" : "ahmos";
+      if (boundUids[otherRole] === user.uid)
+        throw new Error("Bu Firebase hesabı diğer site profiliyle eşleşmiş. Doğru hesaba geç.");
+      if (boundUids[siteRole] && boundUids[siteRole] !== user.uid)
+        throw new Error("Bu profil başka bir Firebase hesabına eşlenmiş. Gerekirse eşlemeyi sıfırla.");
+      boundUids[siteRole] = user.uid;
+      saveBindings();
+      restartCloud();
+    }
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const $ = (id) => document.getElementById(id);
+    let unsubscribeNotes = null;
+    let currentNotes = [];
+    let editingId = null;
+    let currentUser = null;
+    const setStatus = (message) => { $("cloudStatus").textContent = message; };
+
+    function renderNotes() {
+      for (const [role, elementId] of [["ahmos", "ahmosCloudNotes"], ["ahso", "ahsoCloudNotes"]]) {
+        const root = $(elementId);
+        root.replaceChildren();
+        if (!roleMatches()) {
+          const hint = document.createElement("p"); hint.className = "cloud-help";
+          hint.textContent = "Bu cihazda kendi Firebase hesabına bir kez giriş yaparak notları açabilirsin."; root.append(hint); continue;
+        }
+        // Eşin bu cihazda hiç oturum açmamış olabilir. Firestore Rules yalnızca
+        // iki hesabın notlarını okumaya izin verir; bilinmeyen ikinci yazar eşindir.
+        const notes = currentNotes.filter(n => {
+          const knownRole = getRole(n.authorUid);
+          const inferredRole = knownRole || (n.authorUid === currentUser.uid
+            ? siteRole : (siteRole === "ahmos" ? "ahso" : "ahmos"));
+          return inferredRole === role;
+        })
+          .sort((a,b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+        if (!notes.length) {
+          const hint = document.createElement("p"); hint.className = "cloud-help";
+          hint.textContent = "Henüz not yok. İlk notu yazabilirsiniz. ♥"; root.append(hint);
+        }
+        notes.forEach(note => {
+          const card = document.createElement("article"); card.className = "cloud-note-card";
+          const date = document.createElement("div"); date.className = "cloud-note-date";
+          date.textContent = note.createdAt?.toDate ? note.createdAt.toDate().toLocaleDateString("tr-TR") : "Yeni not";
+          const title = document.createElement("h3"); title.textContent = note.title;
+          const body = document.createElement("p"); body.textContent = note.content;
+          card.append(date,title,body);
+          if (roleMatches() && currentUser.uid === note.authorUid) {
+            const actions = document.createElement("div"); actions.className = "cloud-note-buttons";
+            const edit = document.createElement("button"); edit.type = "button"; edit.textContent = "Düzenle";
+            edit.addEventListener("click", () => {
+              editingId = note.id; $("cloudNoteTitle").value = note.title;
+              $("cloudNoteContent").value = note.content;
+              $("cloudEditorHeading").textContent = "Notu düzenle";
+              $("cloudNoteSubmit").textContent = "Değişiklikleri kaydet";
+              $("cloudCancelEdit").hidden = false;
+              $("cloudNotesPanel").hidden = false;
+              $("cloudNoteForm").scrollIntoView({behavior:"smooth",block:"center"});
+            });
+            const del = document.createElement("button"); del.type = "button"; del.textContent = "Sil";
+            del.addEventListener("click", async () => {
+              if (!confirm("Bu not kalıcı olarak silinsin mi?")) return;
+              try { await deleteDoc(doc(db,"notes",note.id)); setStatus("Not silindi."); }
+              catch(e) { setStatus("Silinemedi: " + e.message); }
+            });
+            actions.append(edit,del); card.append(actions);
+          }
+          root.append(card);
+        });
+      }
+    }
+    function resetEdit() {
+      editingId = null; $("cloudNoteForm").reset();
+      $("cloudEditorHeading").textContent = "Yeni not ♥";
+      $("cloudNoteSubmit").textContent = "Notu kaydet";
+      $("cloudCancelEdit").hidden = true;
+    }
+    $("cloudCancelEdit").addEventListener("click",resetEdit);
+    $("cloudLoginForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!siteRole) { setStatus("Önce sitenin şifresini gir."); return; }
+      const submit = $("cloudLoginForm").querySelector('button[type="submit"]');
+      submit.disabled = true;
+      setStatus("Firebase hesabın doğrulanıyor...");
+      try {
+        await setPersistence(auth, browserLocalPersistence);
+        const credential = await signInWithEmailAndPassword(
+          auth, $("cloudEmail").value.trim(), $("cloudPassword").value);
+        $("cloudPassword").value = "";
+        // Eski sürümlerin kalıcı UID sabitlerine ihtiyaç yoktur.
+        if (boundUids[siteRole] && boundUids[siteRole] !== credential.user.uid) {
+          setStatus("Bu site profili farklı bir Firebase hesabına bağlanmış. Doğru hesabını aç veya aşağıdaki eşlemeyi sıfırla.");
+        } else if (boundUids[siteRole] === credential.user.uid) {
+          setStatus("Hesabın açıldı. ♥");
+        } else if (canBind(credential.user)) {
+          if (confirm(`${credential.user.email || "Bu Firebase hesabı"} hesabını ${roleLabel(siteRole)} profiline bağlamak istiyor musun?`)) {
+            bindAccountToSiteRole(credential.user);
+            setStatus(`${roleLabel(siteRole)} hesabın bu tarayıcıya bağlandı. Sonraki ziyaretlerde Firebase şifresi istenmez. ♥`);
+          } else {
+            setStatus("Eşleştirme yapılmadı. Doğru hesapla tekrar deneyebilirsin.");
+          }
+        } else {
+          setStatus("Bu Firebase hesabı diğer site profiliyle eşleşmiş. Hesabı değiştir.");
+        }
+      } catch (error) {
+        setStatus("Firebase girişi başarısız: " + (error.code || error.message));
+      } finally { submit.disabled = false; syncCloudVisibility(); }
+    });
+    $("cloudBindAccount").addEventListener("click", () => {
+      if (!canBind(currentUser)) return;
+      if (!confirm(`${currentUser.email || "Bu Firebase hesabı"} hesabını ${roleLabel(siteRole)} profiline bağla?`)) return;
+      try { bindAccountToSiteRole(currentUser); setStatus("Hesap eşleştirildi. ♥"); }
+      catch (error) { setStatus(error.message); }
+    });
+    $("cloudResetBinding").addEventListener("click", () => {
+      if (!siteRole || !boundUids[siteRole]) return;
+      if (!confirm(`${roleLabel(siteRole)} için yalnızca bu tarayıcıdaki Firebase hesap eşlemesi sıfırlansın mı? Notlar silinmez.`)) return;
+      boundUids[siteRole] = null;
+      saveBindings(); restartCloud();
+      setStatus("Eşleme sıfırlandı. Hesabını yeniden bağlayabilirsin.");
+    });
+    $("cloudLogout").addEventListener("click", async () => {
+      try { await signOut(auth); setStatus("Firebase hesabından çıkış yapıldı. Eşleme korunur."); }
+      catch (error) { setStatus("Çıkış yapılamadı: " + error.message); }
+    });
+    $("cloudNoteForm").addEventListener("submit",async (event) => {
+      event.preventDefault();
+      if (!roleMatches()) { setStatus("Önce site profiline ait Firebase hesabıyla giriş yap."); return; }
+      const title = $("cloudNoteTitle").value.trim();
+      const content = $("cloudNoteContent").value.trim();
+      if (!title || !content) {setStatus("Başlık ve mesaj boş olamaz.");return;}
+      const btn = $("cloudNoteSubmit"); btn.disabled = true;
+      try {
+        if (editingId) {
+          await updateDoc(doc(db,"notes",editingId),{title,content});
+          setStatus("Not güncellendi.");
+        } else {
+          await addDoc(collection(db,"notes"),{authorUid:currentUser.uid,title,content,createdAt:serverTimestamp()});
+          setStatus("Not kaydedildi. ♥");
+        }
+        resetEdit();
+      } catch(e) {setStatus("Kaydedilemedi: "+e.message);}
+      finally {btn.disabled = false;}
+    });
+
+    // İçerik: her bölüm aynı ortak Firestore koleksiyonunda tutulur.
+    const SHARED_TYPES = {
+      recipes: {label:"Yemek tarifi", fields:[
+        {name:"title",label:"Yemeğin adı",kind:"text",max:150,required:true},
+        {name:"body",label:"Tarif (tek paragraf)",kind:"textarea",max:10000,required:true}]},
+      todo: {label:"Yapılacak şey", fields:[{name:"title",label:"Yapılacak şey",kind:"text",max:180,required:true},{name:"done",label:"Bunu yaptık! ♥",kind:"checkbox"}]},
+      locations: {label:"Gidilecek yer", fields:[{name:"title",label:"Lokasyon",kind:"text",max:180,required:true}]},
+      songs: {label:"Şarkı", fields:[
+        {name:"title",label:"Şarkı adı",kind:"text",max:180,required:true},
+        {name:"extra",label:"Sanatçı",kind:"text",max:180},
+        {name:"body",label:"Bu şarkının anısı",kind:"textarea",max:10000},
+        {name:"url",label:"YouTube / Spotify bağlantısı (isteğe bağlı)",kind:"url",max:1000}]},
+      dreams: {label:"Hayal", fields:[
+        {name:"title",label:"Hayal başlığı",kind:"text",max:180,required:true},
+        {name:"body",label:"Açıklama",kind:"textarea",max:10000},
+        {name:"done",label:"Gerçekleşti ♥",kind:"checkbox"}]},
+      timeline: {label:"Anı", fields:[
+        {name:"date",label:"Tarih",kind:"date",required:true},
+        {name:"title",label:"Olay başlığı",kind:"text",max:180,required:true},
+        {name:"body",label:"Kısa açıklama",kind:"textarea",max:10000}]},
+      specialDays: {label:"Özel gün", fields:[
+        {name:"date",label:"Tarih (her yıl tekrarlanır)",kind:"date",required:true},
+        {name:"title",label:"Günün adı",kind:"text",max:180,required:true},
+        {name:"body",label:"Küçük not",kind:"textarea",max:10000}]}
+    };
+    let allSharedEntries = [], unsubscribeShared = null, siteRole = null, editingShared = {};
+    const e = (tag, cls, value) => {
+      const node = document.createElement(tag);
+      if (cls) node.className = cls;
+      if (value != null) node.textContent = value;
+      return node;
+    };
+    const roleMatches = () => siteRole && currentUser && getRole(currentUser.uid) === siteRole;
+    const normalLink = (link) => {
+      if (!link) return null;
+      try {
+        const u = new URL(link);
+        return (u.protocol === "https:" || u.protocol === "http:") ? u.href : null;
+      } catch (_) { return null; }
+    };
+    const loginRequired = () => {
+      $("cloudNotesPanel").hidden = false;
+      $("cloudNotesPanel").scrollIntoView({behavior:"smooth",block:"start"});
+      if (!currentUser) $("cloudEmail").focus();
+    };
+    function makeAction(label, handler) {
+      const button=e("button","",label);
+      button.type="button";
+      button.addEventListener("click",handler);
+      return button;
+    }
+    function renderSharedControls(type) {
+      const root=document.querySelector(`[data-shared-controls="${type}"]`);
+      if (!root) return;
+      root.replaceChildren();
+      if (!siteRole) return;
+      if (!roleMatches()) {
+        const hint=e("div","shared-message", !currentUser
+          ? "Bu cihazda Firebase hesabını bir kez bağla; sonraki ziyaretlerde oturumun hatırlanır."
+          : canBind(currentUser)
+            ? "Firebase oturumun açık, fakat bu cihazda site profiline henüz bağlanmadı. Aşağıdan hesabını eşleştir."
+            : "Firebase oturumun bu site profiline bağlı değil. Ortak hesabımız bölümünden doğru hesabı aç veya eşlemeyi düzelt.");
+        hint.append(" ",makeAction("Firebase hesabına git",loginRequired));
+        root.append(hint);
+        return;
+      }
+      const form=e("form","shared-form");
+      const editing=allSharedEntries.find(x => x.id===editingShared[type] && x.type===type);
+      form.append(e("h3","",editing?"Kaydı düzenle":`+ ${SHARED_TYPES[type].label} ekle`));
+      const controls={};
+      for(const field of SHARED_TYPES[type].fields){
+        const wrap=e("div","shared-field");
+        if(field.kind==="checkbox"){
+          const lbl=e("label","shared-check");
+          const input=document.createElement("input"); input.type="checkbox"; input.checked=!!(editing&&editing[field.name]);
+          lbl.append(input,document.createTextNode(field.label)); wrap.append(lbl); controls[field.name]=input;
+        } else {
+          const label=e("label","",field.label);
+          const input=document.createElement(field.kind==="textarea"?"textarea":"input");
+          if(field.kind!=="textarea") input.type=field.kind;
+          if(field.max) input.maxLength=field.max;
+          input.required=!!field.required;
+          input.value=editing?(editing[field.name]||""):"";
+          if(field.kind==="textarea") input.rows=4;
+          wrap.append(label,input); controls[field.name]=input;
+        }
+        form.append(wrap);
+      }
+      const row=e("div","shared-form-row");
+      const submit=e("button","shared-btn",editing?"Değişiklikleri kaydet":"Kaydet ♥");
+      submit.type="submit"; row.append(submit);
+      if(editing) row.append(makeAction("Vazgeç",()=>{delete editingShared[type];renderSharedControls(type)}));
+      form.append(row);
+      const status=e("div","shared-status");form.append(status);
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!roleMatches()) {status.textContent="Önce kendi Firebase hesabınla giriş yap.";return;}
+        const values={title:"",body:"",extra:"",date:"",url:"",done:false};
+        for (const [key,input] of Object.entries(controls)) {
+          values[key]=input.type==="checkbox"?input.checked:input.value.trim();
+        }
+        if (!values.title) {status.textContent="Başlık boş olamaz.";return;}
+        if (values.url && !normalLink(values.url)) {status.textContent="Geçerli bir http(s) bağlantısı yaz.";return;}
+        submit.disabled=true; status.textContent="Kaydediliyor...";
+        try {
+          if (editing) {
+            await updateDoc(doc(db,"sharedEntries",editing.id),values);
+            status.textContent="Güncellendi.";
+          } else {
+            await addDoc(collection(db,"sharedEntries"),{
+              type,...values,position:Date.now(),createdBy:currentUser.uid,createdAt:serverTimestamp()
+            });
+            status.textContent="Kaydedildi ♥";
+          }
+          delete editingShared[type];renderSharedControls(type);
+        } catch (err) {
+          status.textContent="Kaydedilemedi: "+(err.code||err.message);
+        } finally {submit.disabled=false;}
+      });
+      root.append(form);
+    }
+    const typeEntries = (type) => allSharedEntries.filter(x=>x.type===type)
+      .sort((a,b)=> type === "timeline"
+        ? (a.date||"").localeCompare(b.date||"") || (a.position||0)-(b.position||0)
+        : (a.position||0)-(b.position||0)||a.id.localeCompare(b.id));
+    function eventCountdown(dateStr) {
+      const parts=dateStr.split("-").map(Number);
+      if(parts.length!==3 || !parts.every(Number.isFinite)) return "";
+      const now=new Date(); const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+      let next=new Date(now.getFullYear(),parts[1]-1,parts[2]);
+      if(next<today) next=new Date(now.getFullYear()+1,parts[1]-1,parts[2]);
+      const days=Math.round((next-today)/86400000);
+      return days===0?"Bugün ♥":`${days} gün kaldı`;
+    }
+    function sharedCard(entry,index) {
+      const type=entry.type;
+      let card;
+      if(type==="recipes") {
+        card=e("article","recipe-item");
+        card.append(e("h3","recipe-name",entry.title),e("p","recipe-text",entry.body));
+      } else if(type==="todo"||type==="locations") {
+        card=e("div","ordered-simple-item");
+        const contents=e("div","");const itemText=e("div","ordered-simple-text",entry.title);if(type==="todo" && entry.done){itemText.style.textDecoration="line-through";itemText.style.opacity=".6";}contents.append(itemText);card.append(contents);
+      } else if(type==="songs") {
+        card=e("article","song-card");
+        card.append(e("div","song-number",`Şarkı ${String(index+1).padStart(2,"0")}`),e("h3","song-name",entry.title));
+        if(entry.extra) card.append(e("div","song-artist",entry.extra));
+        if(entry.body) card.append(e("div","song-memory",entry.body));
+        const link=normalLink(entry.url);
+        if(link){
+          const wrapper=e("div","song-links");const a=e("a","song-link", "Bağlantıyı aç");
+          if(/youtube\.com|youtu\.be/i.test(new URL(link).hostname)) a.classList.add("youtube");
+          a.href=link;a.target="_blank";a.rel="noopener noreferrer";wrapper.append(a);card.append(wrapper);
+        }
+      } else if(type==="dreams") {
+        card=e("article","dream-card");
+        card.append(e("div","dream-label",`Hayal ${String(index+1).padStart(2,"0")}`),e("h3","dream-name",entry.title));
+        if(entry.body) card.append(e("p","dream-text",entry.body));
+        card.append(e("div","dream-meta",entry.done?"Gerçekleşti ♥":"Bir gün ♥"));
+      } else if(type==="timeline") {
+        card=e("article","timeline-item");
+        const dot=e("span","timeline-dot");dot.setAttribute("aria-hidden","true");
+        const inner=e("div","timeline-card");
+        inner.append(e("div","timeline-date",entry.date||"Tarih yok"),e("h3","timeline-event-title",entry.title));
+        if(entry.body)inner.append(e("p","timeline-copy",entry.body));
+        card.append(dot,inner);
+      } else if(type==="specialDays") {
+        card=e("article","special-day-card");
+        card.append(e("div","special-day-label","Bizim günümüz"),e("h3","special-day-name",entry.title));
+        card.append(e("div","special-day-date",entry.date||"Tarih yok"));
+        if(entry.date) {
+          const remaining=e("div","special-day-countdown");
+          remaining.append(e("strong","",eventCountdown(entry.date)));
+          card.append(remaining);
+        }
+        if(entry.body)card.append(e("p","special-day-note",entry.body));
+      }
+      if(roleMatches()) {
+        const actions=e("div","shared-inline-actions");
+        if(type==="todo")actions.append(makeAction(entry.done?"↺ Yeniden yapacağız":"♥ Bunu yaptık!",async()=>{try{await updateDoc(doc(db,"sharedEntries",entry.id),{done:!entry.done});}catch(err){alert("Durum güncellenemedi: "+(err.code||err.message));}}));
+        actions.append(makeAction("Düzenle",()=>{
+          editingShared[type]=entry.id;renderSharedControls(type);
+          document.querySelector(`[data-shared-controls="${type}"]`).scrollIntoView({behavior:"smooth",block:"center"});
+        }));
+        if(type==="todo"||type==="locations") {
+          const items=typeEntries(type);
+          for(const [label,diff] of [["↑",-1],["↓",1]]){
+            const btn=makeAction(label,async()=>{
+              const other=items[index+diff];if(!other)return;
+              try {
+                const batch=writeBatch(db);
+                batch.update(doc(db,"sharedEntries",entry.id),{position:other.position});
+                batch.update(doc(db,"sharedEntries",other.id),{position:entry.position});
+                await batch.commit();
+              }catch(err){alert("Sıralama değiştirilemedi: "+(err.code||err.message));}
+            });btn.disabled=!(items[index+diff]);actions.append(btn);
+          }
+        }
+        actions.append(makeAction("Sil",async()=>{
+          if(!confirm(`“${entry.title}” silinsin mi?`))return;
+          try{await deleteDoc(doc(db,"sharedEntries",entry.id));}
+          catch(err){alert("Silinemedi: "+(err.code||err.message));}
+        }));
+        if(type==="timeline")card.querySelector(".timeline-card").append(actions);
+        else if(type==="todo"||type==="locations")card.lastElementChild.append(actions);
+        else card.append(actions);
+      }
+      return card;
+    }
+    function renderSharedList(type) {
+      const root=document.querySelector(`[data-shared-list="${type}"]`);
+      if(!root)return;
+      // Yıldönümünün HTML'deki sabit kartı her yenilemede korunur.
+      const anniversary=type==="specialDays"?root.querySelector(".special-day-card.featured"):null;
+      const beginning=type==="timeline"?root.querySelector(".timeline-item.pinned-beginning"):null;
+      root.replaceChildren();
+      if(anniversary)root.append(anniversary);
+      if(beginning)root.append(beginning);
+      if(!siteRole)return;
+      if(!roleMatches()) {
+        if(type!=="specialDays")root.append(e("p","shared-empty","Ortak içerikler için bu cihazda Firebase hesabını bir kez açmalısın."));
+        return;
+      }
+      const items=typeEntries(type);
+      if(!items.length && type!=="specialDays")root.append(e("p","shared-empty","Henüz kayıt yok. İlkini yukarıdan ekleyebilirsiniz. ♥"));
+      items.forEach((item,index)=>root.append(sharedCard(item,index)));
+    }
+    function renderAllShared() {
+      for(const key of Object.keys(SHARED_TYPES)) {
+        renderSharedControls(key);
+        renderSharedList(key);
+      }
+    }
+    // ===== v17: Wishlist Firestore gerçek zamanlı senkronizasyon =====
+    let wishes = [], unsubscribeWishes = null;
+    function wishDisplay() {
+      const ready = !!roleMatches();
+      const form = $("wishlistForm");
+      form.querySelectorAll("input,select,button").forEach(el=>el.disabled=!ready);
+      if(!ready){
+        $("wishlistStatus").textContent = !currentUser
+          ? "Listeyi kullanmak için Ortak hesabımız bölümünden Firebase hesabını bağla."
+          : "Wishlist için açık Firebase hesabını site profilinle eşleştir.";
+      }
+      for(const [owner, rootId] of [["ahso","wishAhsoList"],["ahmos","wishAhmosList"]]){
+        const root=$(rootId); root.replaceChildren();
+        if(!ready){root.append(e("p","wish-muted","Firebase hesabını bağladığında istekler burada görünecek."));continue;}
+        const own=wishes.filter(w=>w.owner===owner)
+          .sort((a,b)=>Number(!!a.done)-Number(!!b.done)||
+            (b.createdAt?.seconds||0)-(a.createdAt?.seconds||0)||a.id.localeCompare(b.id));
+        if(!own.length){root.append(e("p","wish-muted","Henüz istek yok. İlkini birlikte ekleyelim! ♥"));continue;}
+        for(const item of own){
+          const card=e("div","wish-item"+(item.done?" is-done":""));
+          const check=document.createElement("input");check.type="checkbox";check.checked=!!item.done;
+          check.setAttribute("aria-label",`Alındı: ${item.name}`);
+          check.addEventListener("change",async()=>{
+            check.disabled=true;
+            try{await updateDoc(doc(db,"wishes",item.id),{done:check.checked});}
+            catch(err){check.checked=!check.checked;$("wishlistStatus").textContent="Güncellenemedi: "+(err.code||err.message);}
+            finally{check.disabled=false;}
+          });
+          const name=e("span","wish-name",item.name);
+          const edit=makeAction("✎",async()=>{
+            const newName=window.prompt("İsteği düzenle:",item.name);
+            if(newName===null)return;
+            const value=newName.trim();if(!value||value.length>180){$("wishlistStatus").textContent="Ürün adı 1-180 karakter olmalı.";return;}
+            edit.disabled=true;
+            try{await updateDoc(doc(db,"wishes",item.id),{name:value});}
+            catch(err){$("wishlistStatus").textContent="Düzenlenemedi: "+(err.code||err.message);}
+            finally{edit.disabled=false;}
+          });edit.title="İsteği düzenle";edit.setAttribute("aria-label",item.name+" düzenle");
+          const del=makeAction("×",async()=>{
+            if(!window.confirm(`“${item.name}” silinsin mi?`))return;
+            del.disabled=true;
+            try{await deleteDoc(doc(db,"wishes",item.id));}
+            catch(err){$("wishlistStatus").textContent="Silinemedi: "+(err.code||err.message);del.disabled=false;}
+          });del.title="İsteği sil";del.setAttribute("aria-label",item.name+" sil");
+          card.append(check,name,edit,del);root.append(card);
+        }
+      }
+    }
+    $("wishlistForm").addEventListener("submit",async event=>{
+      event.preventDefault();
+      if(!roleMatches()) {$("wishlistStatus").textContent="Önce Firebase hesabınla giriş yap.";loginRequired();return;}
+      const name=$("wishlistName").value.trim();const owner=$("wishlistOwner").value;
+      if(!name||name.length>180||!["ahso","ahmos"].includes(owner))return;
+      const btn=$("wishlistSubmit");btn.disabled=true;
+      $("wishlistStatus").textContent="İstek kaydediliyor...";
+      try{
+        await addDoc(collection(db,"wishes"),{
+          owner,name,done:false,createdBy:currentUser.uid,createdAt:serverTimestamp()
+        });
+        $("wishlistName").value="";$("wishlistStatus").textContent="♥ İstek eklendi. Her iki cihazda da görünecek.";
+      }catch(err){$("wishlistStatus").textContent="Kaydedilemedi: "+(err.code||err.message)+". Firestore Rules'ta /wishes izni olmalı.";}
+      finally{btn.disabled=false;}
+    });
+    // Date game -> mevcut sharedEntries/todo formatıyla sakla (mevcut rules uyumlu).
+    window.__loveGameAddTodo=async (title)=>{
+      if(!roleMatches()) {loginRequired();throw new Error("Önce Firebase hesabını bağla.");}
+      const safe=String(title||"").trim();if(!safe||safe.length>200)throw new Error("Geçersiz buluşma adı.");
+      await addDoc(collection(db,"sharedEntries"),{
+        type:"todo", title:safe, body:"",extra:"",date:"",url:"",done:false,
+        position:Date.now(),createdBy:currentUser.uid,createdAt:serverTimestamp()
+      });
+    };
+    wishDisplay();
+
+    function stopCloudListeners() {
+      if(unsubscribeWishes){unsubscribeWishes();unsubscribeWishes=null;}
+      wishes=[];
+      if(unsubscribeNotes){unsubscribeNotes();unsubscribeNotes=null;}
+      if(unsubscribeShared){unsubscribeShared();unsubscribeShared=null;}
+      currentNotes=[];allSharedEntries=[];
+    }
+    function syncCloudVisibility() {
+      const role = currentUser && getRole(currentUser.uid);
+      const active = !!siteRole && !!currentUser && role === siteRole;
+      $("cloudLoginForm").hidden = active;
+      $("cloudLogout").hidden = !currentUser;
+      $("cloudBindAccount").hidden = !canBind(currentUser);
+      $("cloudResetBinding").hidden = !siteRole || !boundUids[siteRole];
+      $("cloudNoteForm").hidden = !active;
+      $("cloudLoginForm").querySelector('button[type="submit"]').textContent = currentUser
+        ? "Başka Firebase hesabıyla giriş yap" : "İlk kez Firebase hesabını bağla";
+      $("cloudSessionText").textContent = !siteRole ? "Önce sitenin şifresini gir." :
+        !currentUser ? `${roleLabel(siteRole)} için Firebase hesabını bir kez açıp bağla.` :
+        active ? `${roleLabel(siteRole)} • ${currentUser.email || "Firebase hesabı"} bağlı. Tekrar Firebase şifresi gerekmiyor. ♥` :
+        canBind(currentUser) ? `${currentUser.email || "Bu hesap"} açık. ${roleLabel(siteRole)} profiline bağlamak için aşağıdaki butonu kullan.` :
+        `${currentUser.email || "Bu hesap"} bu profilin Firebase hesabıyla eşleşmiyor. Doğru hesaba geç veya bu cihazdaki eşlemeyi düzelt.`;
+    }
+    function restartCloud() {
+      stopCloudListeners();
+      resetEdit();
+      syncCloudVisibility();
+      renderNotes();renderAllShared();wishDisplay();
+      if(!roleMatches())return;
+      unsubscribeNotes=onSnapshot(collection(db,"notes"),snap=>{
+        currentNotes=snap.docs.map(d=>({id:d.id,...d.data()}));renderNotes();
+      },err=>setStatus("Notlar okunamadı: "+(err.code||err.message)));
+      unsubscribeShared=onSnapshot(collection(db,"sharedEntries"),snap=>{
+        allSharedEntries=snap.docs.map(d=>({id:d.id,...d.data()}));renderAllShared();
+      },err=>setStatus("Ortak içerikler okunamadı: "+(err.code||err.message)+" (Firestore Rules kontrol edilmeli.)"));
+      unsubscribeWishes=onSnapshot(collection(db,"wishes"),snap=>{
+        wishes=snap.docs.map(d=>({id:d.id,...d.data()}));wishDisplay();
+      },err=>{$("wishlistStatus").textContent="Wishlist yüklenemedi: "+(err.code||err.message)+". Firestore Rules'ta /wishes izinlerini yayımla.";});
+    }
+    // Firebase oturumu önce yüklenebilir; ortak içerikler yalnızca site şifresi açıldıktan sonra işlenir.
+    window.addEventListener("site-unlocked",event=>{
+      siteRole=event.detail.role;
+      restartCloud();
+    });
+    if(window.__siteUnlockedRole) {
+      siteRole=window.__siteUnlockedRole;
+      restartCloud();
+    }
+
+    // ─── v19: Gmail servisi / Cloudflare Worker üzerinden güvenilir JSON teyidi ───
+    // Worker'ı yayımladıktan sonra workers.dev URL'sini buraya yaz.
+    const MAIL_API_URL = "https://bizim-hikayemiz-mail.ahsosahmos.workers.dev/";
+    const mailButton = $("loveButton");
+    const mailInfo = $("loveMailInfo");
+    let mailBusy = false;
+    const mailStatus = (message) => { mailInfo.textContent = message; };
+    function isMailConfigured() {
+      return /^https:\/\/[a-zA-Z0-9.-]+\.workers\.dev\/?$/.test(MAIL_API_URL) ||
+        /^https:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\/?.*$/.test(MAIL_API_URL) && !MAIL_API_URL.includes('BURAYA');
+    }
+    async function requestLoveEmail(idToken) {
+      const requestId = crypto.randomUUID ? crypto.randomUUID() :
+        Date.now().toString(36) + "_" + Math.random().toString(36).slice(2);
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 35000);
+      try {
+        const res = await fetch(MAIL_API_URL, {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({idToken, requestId}),
+          signal: controller.signal,
+          cache: "no-store"
+        });
+        const data = await res.json();
+        if (!data || data.requestId !== requestId || data.kind !== "bizim-hikayemiz-mail-v19")
+          throw new Error("Gmail servisi beklenen yanıtı döndürmedi.");
+        if (!data.ok) throw new Error(data.message || "E-posta gönderilemedi.");
+        return data;
+      } catch (error) {
+        if (error.name === "AbortError" || error instanceof TypeError)
+          throw new Error("Sunucudan yanıt alınamadı. Mail gönderilmiş olabilir; tekrar basmadan önce gelen kutusunu kontrol et.");
+        throw error;
+      } finally { clearTimeout(timer); }
+    }
+    mailButton.addEventListener("click", async () => {
+      if (mailBusy) return;
+      if (!siteRole) { mailStatus("Önce sitenin şifresiyle giriş yap."); return; }
+      if (!roleMatches() || !currentUser) {
+        mailStatus("Önce bu site profiline bağlı Firebase hesabıyla giriş yap.");
+        loginRequired(); return;
+      }
+      if (!isMailConfigured()) {
+        mailStatus("Gmail servisi henüz tamamlanmadı. Worker URL'sini HTML'deki MAIL_API_URL alanına ekle."); return;
+      }
+      mailBusy = true; mailButton.disabled = true;
+      mailStatus("Seni seviyorum mesajı gönderiliyor...");
+      try {
+        const idToken = await currentUser.getIdToken();
+        await requestLoveEmail(idToken);
+        mailStatus("♥ Mesaj gönderildi! Sitenin Gmail hesabından sevgiline gönderildi.");
+      } catch (error) {
+        mailStatus("Gönderim sonucu: " + (error.message || String(error)));
+      } finally { mailBusy = false; mailButton.disabled = false; }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      currentUser=user;
+      restartCloud();
     });
   </script>
+
 </body>
 </html>

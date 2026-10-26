@@ -1,0 +1,228 @@
+{
+  "format": "MLMEDIA-MANIFEST-001",
+  "encryption": "AES-256-GCM",
+  "items": [
+    {
+      "id": "memory-001",
+      "file": "memory-001.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-002",
+      "file": "memory-002.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-003",
+      "file": "memory-003.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-004",
+      "file": "memory-004.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-005",
+      "file": "memory-005.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-006",
+      "file": "memory-006.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-007",
+      "file": "memory-007.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-008",
+      "file": "memory-008.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-009",
+      "file": "memory-009.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-010",
+      "file": "memory-010.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-011",
+      "file": "memory-011.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-012",
+      "file": "memory-012.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-013",
+      "file": "memory-013.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-014",
+      "file": "memory-014.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-015",
+      "file": "memory-015.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-016",
+      "file": "memory-016.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-017",
+      "file": "memory-017.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-018",
+      "file": "memory-018.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-019",
+      "file": "memory-019.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-020",
+      "file": "memory-020.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-021",
+      "file": "memory-021.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-022",
+      "file": "memory-022.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-023",
+      "file": "memory-023.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-024",
+      "file": "memory-024.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-025",
+      "file": "memory-025.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-026",
+      "file": "memory-026.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-027",
+      "file": "memory-027.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-028",
+      "file": "memory-028.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-029",
+      "file": "memory-029.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-030",
+      "file": "memory-030.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-031",
+      "file": "memory-031.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-032",
+      "file": "memory-032.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-033",
+      "file": "memory-033.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-034",
+      "file": "memory-034.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-035",
+      "file": "memory-035.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-036",
+      "file": "memory-036.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    },
+    {
+      "id": "memory-037",
+      "file": "memory-037.enc",
+      "mime": "image/jpeg",
+      "encrypted": true
+    }
+  ]
+}
